@@ -1,9 +1,9 @@
+/* Accessibility styles - MUST be imported first per CSS spec */
+@import './accessibility.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Accessibility styles - loaded after Tailwind to ensure they take precedence */
-@import './accessibility.css';
 
 @layer base {
   :root {
