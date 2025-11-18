@@ -14,6 +14,7 @@ import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import Contact from './pages/Contact'
 import Donate from './pages/Donate'
+import AccessibilityTest from './pages/AccessibilityTest'
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/donate" element={<Donate />} />
+            <Route path="/accessibility-test" element={<AccessibilityTest />} />
             {/* Add more routes as needed */}
           </Routes>
         </main>
