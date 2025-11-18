@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
+import AccessibilityWidget from './components/AccessibilityWidget'
 import Home from './pages/Home'
 import About from './pages/About'
 import Podcast from './pages/Podcast'
@@ -17,9 +18,9 @@ import Donate from './pages/Donate'
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow" id="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -36,6 +37,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <AccessibilityWidget />
       </div>
     </Router>
   )

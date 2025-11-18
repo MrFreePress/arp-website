@@ -19,6 +19,10 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
+      {/* Skip to Main Content Link for Accessibility */}
+      <a href="#main-content" className="skip-to-main">
+        Skip to main content
+      </a>
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex w-full items-center justify-between py-4">
           <div className="flex items-center">

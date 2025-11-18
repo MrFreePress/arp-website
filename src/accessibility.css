@@ -1,0 +1,233 @@
+/* Accessibility Widget Styles */
+
+/* Font Size Scaling */
+:root {
+  --accessibility-font-scale: 100%;
+  --accessibility-letter-spacing: 0px;
+  --accessibility-line-height: 1.5;
+}
+
+body {
+  font-size: calc(16px * var(--accessibility-font-scale) / 100);
+  letter-spacing: var(--accessibility-letter-spacing);
+  line-height: var(--accessibility-line-height);
+}
+
+/* Dyslexic Font */
+.dyslexic-font,
+.dyslexic-font * {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', 'Arial', sans-serif !important;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+  filter: contrast(1.5);
+}
+
+.high-contrast * {
+  border-color: #000 !important;
+}
+
+.high-contrast a {
+  color: #0000EE !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast button {
+  border: 2px solid #000 !important;
+}
+
+/* Highlight Links */
+.highlight-links a {
+  background-color: #ffff00 !important;
+  padding: 2px 4px !important;
+  border-radius: 3px !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+}
+
+/* Highlight Headings */
+.highlight-headings h1,
+.highlight-headings h2,
+.highlight-headings h3,
+.highlight-headings h4,
+.highlight-headings h5,
+.highlight-headings h6 {
+  background-color: #ffffcc !important;
+  padding: 8px !important;
+  border-left: 4px solid #8B3A7E !important;
+  margin-bottom: 16px !important;
+}
+
+/* Grayscale Mode */
+.grayscale-mode {
+  filter: grayscale(100%);
+}
+
+/* Invert Colors */
+.invert-colors {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.invert-colors img,
+.invert-colors video {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Cursor Sizes */
+[data-cursor-size="normal"] * {
+  cursor: auto;
+}
+
+[data-cursor-size="large"] * {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2 2 L2 28 L12 20 L18 30 L22 28 L16 18 L28 18 Z" fill="black" stroke="white" stroke-width="1"/></svg>') 2 2, auto !important;
+}
+
+[data-cursor-size="extra-large"] * {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M3 3 L3 42 L18 30 L27 45 L33 42 L24 27 L42 27 Z" fill="black" stroke="white" stroke-width="2"/></svg>') 3 3, auto !important;
+}
+
+/* Focus Indicators (Always visible for accessibility) */
+*:focus-visible {
+  outline: 3px solid #8B3A7E !important;
+  outline-offset: 2px !important;
+}
+
+/* Skip to Main Content Link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #8B3A7E;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+
+/* Ensure text remains readable with all settings */
+.dyslexic-font p,
+.dyslexic-font li,
+.dyslexic-font span {
+  line-height: inherit;
+}
+
+/* Smooth transitions for accessibility changes */
+body,
+body * {
+  transition: font-size 0.3s ease, letter-spacing 0.3s ease, line-height 0.3s ease;
+}
+
+/* Prevent layout shift with larger fonts */
+.accessibility-container {
+  overflow-x: hidden;
+}
+
+/* High contrast adjustments for specific elements */
+.high-contrast input,
+.high-contrast textarea,
+.high-contrast select {
+  border: 2px solid #000 !important;
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.high-contrast button {
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+}
+
+.high-contrast button:hover {
+  background: #333 !important;
+}
+
+/* Ensure widget is always accessible */
+.accessibility-widget-button {
+  z-index: 9999 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .accessibility-widget-panel {
+    width: 90vw !important;
+    max-width: 320px !important;
+    right: 5vw !important;
+  }
+}
+
+/* Print styles - disable accessibility modifications for printing */
+@media print {
+  .dyslexic-font,
+  .dyslexic-font * {
+    font-family: inherit !important;
+  }
+  
+  .high-contrast {
+    filter: none !important;
+  }
+  
+  .grayscale-mode {
+    filter: none !important;
+  }
+  
+  .invert-colors {
+    filter: none !important;
+  }
+  
+  .highlight-links a {
+    background-color: transparent !important;
+    padding: 0 !important;
+  }
+  
+  .highlight-headings h1,
+  .highlight-headings h2,
+  .highlight-headings h3,
+  .highlight-headings h4,
+  .highlight-headings h5,
+  .highlight-headings h6 {
+    background-color: transparent !important;
+    border-left: none !important;
+  }
+}
+
+/* Animation preferences */
+@media (prefers-reduced-motion: reduce) {
+  body,
+  body * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Ensure sufficient contrast for all text */
+.high-contrast p,
+.high-contrast span,
+.high-contrast li,
+.high-contrast td,
+.high-contrast th {
+  color: #000 !important;
+  background: #fff !important;
+}
+
+/* OpenDyslexic Font Import (optional - can be loaded from CDN or local) */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/fonts/OpenDyslexic-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/fonts/OpenDyslexic-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
