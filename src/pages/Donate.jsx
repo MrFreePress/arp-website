@@ -48,16 +48,16 @@ export default function Donate() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-rose-50 to-pink-50 py-16">
+      <section className="bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/20 dark:to-pink-950/20 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Heart className="h-16 w-16 text-primary mx-auto mb-6" fill="currentColor" />
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
               Your Support Changes Lives
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
               Help us provide free resources, support, and connections to families navigating autism and neurodiversity.
             </p>
           </div>
@@ -65,7 +65,7 @@ export default function Donate() {
       </section>
 
       {/* Impact Stats */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-white dark:bg-gray-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {impactStats.map((stat) => (
@@ -73,8 +73,8 @@ export default function Donate() {
                 <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
                   <stat.icon className="h-6 w-6 text-primary" />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">{stat.value}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -85,8 +85,8 @@ export default function Donate() {
       <section className="py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Choose Your Impact Level</h2>
-            <p className="text-lg text-gray-600">Every contribution makes a difference</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Choose Your Impact Level</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300">Every contribution makes a difference</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {donationTiers.map((tier) => (
@@ -109,7 +109,7 @@ export default function Donate() {
                     {tier.benefits.map((benefit) => (
                       <li key={benefit} className="flex items-start gap-2">
                         <Check className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-gray-600">{benefit}</span>
+                        <span className="text-sm text-gray-600 dark:text-gray-300">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -121,7 +121,7 @@ export default function Donate() {
             ))}
           </div>
           <div className="text-center mt-8">
-            <p className="text-gray-600 mb-4">Want to make a custom donation?</p>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">Want to make a custom donation?</p>
             <Button size="lg" variant="outline">
               Choose Custom Amount
             </Button>
@@ -130,10 +130,10 @@ export default function Donate() {
       </section>
 
       {/* Corporate Sponsorship */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Corporate Sponsorship</h2>
-          <p className="text-lg text-gray-600 mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Corporate Sponsorship</h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
             Partner with us to make a lasting impact in the autism community. We offer customized sponsorship packages for businesses and organizations.
           </p>
           <Button size="lg">
@@ -143,7 +143,7 @@ export default function Donate() {
       </section>
 
       {/* Testimonial */}
-      <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+      <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 text-white">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <blockquote className="text-xl italic mb-6">
             "The Autism Resource Project has been a lifeline for our family. The free resources and supportive community have made all the difference in our journey."
