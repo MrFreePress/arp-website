@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -18,7 +19,7 @@ export default function Header() {
   ]
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50 border-b dark:border-gray-800">
       {/* Skip to Main Content Link for Accessibility */}
       <a href="#main-content" className="skip-to-main">
         Skip to main content
@@ -41,21 +42,23 @@ export default function Header() {
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-sm font-medium text-gray-700 hover:text-primary transition-colors"
+                className="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors"
               >
                 {link.name}
               </Link>
             ))}
+            <ThemeToggle />
             <Button asChild size="sm">
               <Link to="/donate">Donate</Link>
             </Button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center gap-2">
+            <ThemeToggle />
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100"
+              className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span className="sr-only">Open menu</span>
@@ -76,7 +79,7 @@ export default function Header() {
                 <Link
                   key={link.name}
                   to={link.href}
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md"
+                  className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary rounded-md"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
