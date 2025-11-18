@@ -65,7 +65,7 @@ export default function Podcast() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-50 to-blue-50 py-16">
+      <section className="bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
@@ -196,7 +196,7 @@ export default function Podcast() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+      <section className="py-16 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 text-white">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Never Miss an Episode</h2>
           <p className="text-xl mb-8 text-blue-100">

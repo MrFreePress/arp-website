@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Heart, Facebook, Instagram, Mail } from 'lucide-react'
+import { Facebook, Instagram, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
@@ -17,11 +17,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About Section */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
-                <Heart className="h-5 w-5 text-white" fill="currentColor" />
-              </div>
-              <span className="text-lg font-bold">ARP</span>
+            <div className="mb-4">
+              <img 
+                src="/arp-logo.jpg" 
+                alt="Autism Resource Project" 
+                className="h-16 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-gray-400 text-sm">
               Your one-stop hub for autism, neurodiversity, and disabilities—offering 24/7 trusted information, support, and connections.

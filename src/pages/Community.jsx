@@ -63,7 +63,7 @@ export default function Community() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-50 to-blue-50 py-16">
+      <section className="bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
@@ -185,7 +185,7 @@ export default function Community() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-green-600 to-blue-600 text-white">
+      <section className="py-16 bg-gradient-to-br from-orange-500 via-pink-600 to-purple-600 text-white">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Want to Add Your Community?</h2>
           <p className="text-xl mb-8 text-green-100">

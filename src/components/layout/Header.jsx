@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, X, Heart } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function Header() {
@@ -22,13 +22,12 @@ export default function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex w-full items-center justify-between py-4">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center">
-                <Heart className="h-6 w-6 text-white" fill="currentColor" />
-              </div>
-              <span className="text-xl font-bold text-gray-900">
-                Autism Resource Project
-              </span>
+            <Link to="/" className="flex items-center space-x-3">
+              <img 
+                src="/arp-logo.jpg" 
+                alt="Autism Resource Project Logo" 
+                className="h-12 w-auto"
+              />
             </Link>
           </div>
 
