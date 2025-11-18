@@ -5,15 +5,15 @@ import { Heart, Users, Target, Award } from 'lucide-react'
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950/20 dark:to-indigo-950/20 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
               About Autism Resource Project
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
               Building a supportive community for autism, neurodiversity, and disabilities
             </p>
           </div>
@@ -21,12 +21,12 @@ export default function About() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <Target className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Mission</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
               The Autism Resource Project exists to provide accessible, trusted information and support to individuals with autism, their families, caregivers, and service providers. We believe in creating a world where every person in the neurodiverse community feels heard, supported, and celebrated.
             </p>
           </div>
@@ -34,18 +34,18 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-gray-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Our Values</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Our Values</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="h-16 w-16 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
                 <Heart className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Compassion</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Compassion</h3>
+              <p className="text-gray-600 dark:text-gray-300">
                 We approach every interaction with empathy, understanding, and genuine care for our community members.
               </p>
             </div>
@@ -53,8 +53,8 @@ export default function About() {
               <div className="h-16 w-16 rounded-full bg-indigo-100 flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-indigo-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Community</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Community</h3>
+              <p className="text-gray-600 dark:text-gray-300">
                 We believe in the power of connection and shared experiences to support and uplift one another.
               </p>
             </div>
@@ -62,8 +62,8 @@ export default function About() {
               <div className="h-16 w-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4">
                 <Award className="h-8 w-8 text-purple-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Excellence</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Excellence</h3>
+              <p className="text-gray-600 dark:text-gray-300">
                 We are committed to providing high-quality, evidence-based resources and information.
               </p>
             </div>
@@ -72,10 +72,10 @@ export default function About() {
       </section>
 
       {/* Story Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Our Story</h2>
-          <div className="prose prose-lg max-w-none text-gray-600">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">Our Story</h2>
+          <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-300">
             <p>
               The Autism Resource Project was born from a simple yet powerful idea: no family should have to navigate the autism journey alone. Founded by individuals who have experienced firsthand the challenges of finding reliable information and support, ARP has grown into a comprehensive resource hub serving thousands of families across the country.
             </p>
