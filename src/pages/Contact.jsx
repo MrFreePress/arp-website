@@ -27,15 +27,15 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-teal-50 to-blue-50 py-16">
+      <section className="bg-gradient-to-br from-teal-50 to-blue-50 dark:from-teal-950/20 dark:to-blue-950/20 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
               Contact Us
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
               We're here to help. Reach out with questions, feedback, or partnership inquiries.
             </p>
           </div>
@@ -58,7 +58,7 @@ export default function Contact() {
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Name *
                       </label>
                       <Input
@@ -133,7 +133,7 @@ export default function Contact() {
                   <div className="flex items-start gap-3">
                     <Mail className="h-5 w-5 text-primary mt-1" />
                     <div>
-                      <p className="font-medium text-gray-900">Email</p>
+                      <p className="font-medium text-gray-900 dark:text-white">Email</p>
                       <a href="mailto:info@autismresourceproject.org" className="text-primary hover:underline">
                         info@autismresourceproject.org
                       </a>
@@ -142,7 +142,7 @@ export default function Contact() {
                   <div className="flex items-start gap-3">
                     <Phone className="h-5 w-5 text-primary mt-1" />
                     <div>
-                      <p className="font-medium text-gray-900">Phone</p>
+                      <p className="font-medium text-gray-900 dark:text-white">Phone</p>
                       <a href="tel:+1234567890" className="text-primary hover:underline">
                         (123) 456-7890
                       </a>
@@ -151,8 +151,8 @@ export default function Contact() {
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary mt-1" />
                     <div>
-                      <p className="font-medium text-gray-900">Location</p>
-                      <p className="text-gray-600">Serving communities nationwide</p>
+                      <p className="font-medium text-gray-900 dark:text-white">Location</p>
+                      <p className="text-gray-600 dark:text-gray-300">Serving communities nationwide</p>
                     </div>
                   </div>
                 </CardContent>
@@ -165,16 +165,16 @@ export default function Contact() {
                 <CardContent>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Monday - Friday</span>
-                      <span className="font-medium">9:00 AM - 5:00 PM</span>
+                      <span className="text-gray-600 dark:text-gray-400">Monday - Friday</span>
+                      <span className="font-medium dark:text-gray-200">9:00 AM - 5:00 PM</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Saturday</span>
-                      <span className="font-medium">10:00 AM - 2:00 PM</span>
+                      <span className="text-gray-600 dark:text-gray-400">Saturday</span>
+                      <span className="font-medium dark:text-gray-200">10:00 AM - 2:00 PM</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Sunday</span>
-                      <span className="font-medium">Closed</span>
+                      <span className="text-gray-600 dark:text-gray-400">Sunday</span>
+                      <span className="font-medium dark:text-gray-200">Closed</span>
                     </div>
                   </div>
                 </CardContent>
