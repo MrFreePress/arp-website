@@ -7,10 +7,25 @@
   --accessibility-line-height: 1.5;
 }
 
-body {
-  font-size: calc(16px * var(--accessibility-font-scale) / 100);
-  letter-spacing: var(--accessibility-letter-spacing);
-  line-height: var(--accessibility-line-height);
+/* Apply font size scaling to all text elements */
+html {
+  font-size: calc(16px * var(--accessibility-font-scale) / 100) !important;
+}
+
+body,
+body * {
+  letter-spacing: var(--accessibility-letter-spacing) !important;
+  line-height: var(--accessibility-line-height) !important;
+}
+
+/* Ensure headings also scale */
+h1, h2, h3, h4, h5, h6 {
+  line-height: var(--accessibility-line-height) !important;
+}
+
+/* Ensure paragraphs and text elements scale */
+p, span, div, li, td, th, a, button, input, textarea, label {
+  letter-spacing: var(--accessibility-letter-spacing) !important;
 }
 
 /* Dyslexic Font */

@@ -53,8 +53,12 @@ export default function AccessibilityWidget() {
   const applySettings = () => {
     const root = document.documentElement
 
+    // Debug: Log settings being applied
+    console.log('Applying accessibility settings:', settings)
+
     // Font size
     root.style.setProperty('--accessibility-font-scale', `${settings.fontSize}%`)
+    console.log('Font scale set to:', `${settings.fontSize}%`)
     
     // Letter spacing
     root.style.setProperty('--accessibility-letter-spacing', `${settings.letterSpacing}px`)
