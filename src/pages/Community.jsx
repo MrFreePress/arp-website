@@ -61,15 +61,15 @@ export default function Community() {
   })
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50 py-16">
+      <section className="bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50 dark:from-yellow-950/20 dark:via-orange-950/20 dark:to-pink-950/20 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
               Community Connection
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
               Find local support groups, events, and resources in your area. Connect with families and individuals who understand your journey.
             </p>
           </div>
@@ -77,11 +77,11 @@ export default function Community() {
       </section>
 
       {/* Filters Section */}
-      <section className="py-8 bg-white border-b">
+      <section className="py-8 bg-white dark:bg-gray-800 border-b dark:border-gray-700">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Select State
               </label>
               <Select
@@ -99,7 +99,7 @@ export default function Community() {
               </Select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Select City
               </label>
               <Select
@@ -114,7 +114,7 @@ export default function Community() {
               </Select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Community Type
               </label>
               <Select
@@ -136,7 +136,7 @@ export default function Community() {
       <section className="py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
               {filteredCommunities.length} Communit{filteredCommunities.length !== 1 ? 'ies' : 'y'} Found
             </h2>
           </div>
@@ -185,7 +185,7 @@ export default function Community() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-orange-500 via-pink-600 to-purple-600 text-white">
+      <section className="py-16 bg-gradient-to-br from-orange-500 via-pink-600 to-purple-600 dark:from-orange-600 dark:via-pink-700 dark:to-purple-700 text-white">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Want to Add Your Community?</h2>
           <p className="text-xl mb-8 text-green-100">
