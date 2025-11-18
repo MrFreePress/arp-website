@@ -83,7 +83,7 @@ export default function AccessibilityTest() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4">
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <Card>
@@ -91,7 +91,7 @@ export default function AccessibilityTest() {
             <CardTitle className="text-3xl">Accessibility Widget Diagnostics</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
               This page monitors the accessibility widget in real-time. Open the accessibility 
               widget (purple gear icon) and make changes. The diagnostics below will update 
               automatically every 2 seconds.
@@ -107,15 +107,15 @@ export default function AccessibilityTest() {
           </CardHeader>
           <CardContent>
             <div className="space-y-2 font-mono text-sm">
-              <div className="flex justify-between p-2 bg-gray-100 rounded">
+              <div className="flex justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded">
                 <span>--accessibility-font-scale:</span>
                 <span className="font-bold">{diagnostics.cssVariables.fontScale || 'NOT SET'}</span>
               </div>
-              <div className="flex justify-between p-2 bg-gray-100 rounded">
+              <div className="flex justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded">
                 <span>--accessibility-letter-spacing:</span>
                 <span className="font-bold">{diagnostics.cssVariables.letterSpacing || 'NOT SET'}</span>
               </div>
-              <div className="flex justify-between p-2 bg-gray-100 rounded">
+              <div className="flex justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded">
                 <span>--accessibility-line-height:</span>
                 <span className="font-bold">{diagnostics.cssVariables.lineHeight || 'NOT SET'}</span>
               </div>
@@ -132,13 +132,13 @@ export default function AccessibilityTest() {
             {diagnostics.htmlClasses.length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {diagnostics.htmlClasses.map((cls, idx) => (
-                  <span key={idx} className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-mono">
+                  <span key={idx} className="px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-purple-200 rounded-full text-sm font-mono">
                     {cls}
                   </span>
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500">No accessibility classes applied</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">No accessibility classes applied</p>
             )}
           </CardContent>
         </Card>
@@ -150,11 +150,11 @@ export default function AccessibilityTest() {
           </CardHeader>
           <CardContent>
             <div className="space-y-2 font-mono text-sm">
-              <div className="flex justify-between p-2 bg-gray-100 rounded">
+              <div className="flex justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded">
                 <span>data-cursor-size:</span>
                 <span className="font-bold">{diagnostics.htmlAttributes.cursorSize || 'NOT SET'}</span>
               </div>
-              <div className="flex justify-between p-2 bg-gray-100 rounded">
+              <div className="flex justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded">
                 <span>lang:</span>
                 <span className="font-bold">{diagnostics.htmlAttributes.lang || 'NOT SET'}</span>
               </div>
@@ -169,19 +169,19 @@ export default function AccessibilityTest() {
           </CardHeader>
           <CardContent>
             <div className="space-y-2 font-mono text-sm">
-              <div className="flex justify-between p-2 bg-gray-100 rounded">
+              <div className="flex justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded">
                 <span>HTML font-size:</span>
                 <span className="font-bold">{diagnostics.computedStyles.htmlFontSize}</span>
               </div>
-              <div className="flex justify-between p-2 bg-gray-100 rounded">
+              <div className="flex justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded">
                 <span>Body font-size:</span>
                 <span className="font-bold">{diagnostics.computedStyles.bodyFontSize}</span>
               </div>
-              <div className="flex justify-between p-2 bg-gray-100 rounded">
+              <div className="flex justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded">
                 <span>Body letter-spacing:</span>
                 <span className="font-bold">{diagnostics.computedStyles.bodyLetterSpacing}</span>
               </div>
-              <div className="flex justify-between p-2 bg-gray-100 rounded">
+              <div className="flex justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded">
                 <span>Body line-height:</span>
                 <span className="font-bold">{diagnostics.computedStyles.bodyLineHeight}</span>
               </div>
@@ -196,11 +196,11 @@ export default function AccessibilityTest() {
           </CardHeader>
           <CardContent>
             {diagnostics.localStorage ? (
-              <pre className="bg-gray-100 p-4 rounded overflow-x-auto text-sm">
+              <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded overflow-x-auto text-sm">
                 {JSON.stringify(diagnostics.localStorage, null, 2)}
               </pre>
             ) : (
-              <p className="text-gray-500">No settings saved in localStorage</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">No settings saved in localStorage</p>
             )}
           </CardContent>
         </Card>
@@ -211,11 +211,11 @@ export default function AccessibilityTest() {
             <CardTitle>Test Content</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <h1 className="text-4xl font-bold">Heading 1 - Test Text</h1>
-            <h2 className="text-3xl font-bold">Heading 2 - Test Text</h2>
-            <h3 className="text-2xl font-bold">Heading 3 - Test Text</h3>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Accessibility Widget Diagnostics</h1>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Heading 2 - Test Text</h2>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Heading 3 - Test Text</h3>
             
-            <p className="text-base">
+            <p className="text-base text-gray-600 dark:text-gray-300">
               This is a paragraph of test text. If the accessibility features are working, 
               this text should change size, spacing, and appearance when you adjust the 
               settings in the accessibility widget.
