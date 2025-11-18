@@ -47,7 +47,7 @@ export default function PodcastEpisode() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
         {/* Back Button */}
         <Link to="/podcast" className="inline-flex items-center text-primary hover:underline mb-6">
@@ -56,29 +56,29 @@ export default function PodcastEpisode() {
         </Link>
 
         {/* Episode Header */}
-        <div className="bg-white rounded-lg shadow-sm p-8 mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 mb-6">
           <div className="flex items-start justify-between mb-4">
             <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
               {episode.topic}
             </span>
-            <span className="text-sm text-gray-500">{new Date(episode.date).toLocaleDateString()}</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">{new Date(episode.date).toLocaleDateString()}</span>
           </div>
           
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">{episode.title}</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{episode.title}</h1>
           
           <div className="flex items-center gap-4 mb-6">
             <div>
-              <p className="text-sm text-gray-500">Guest</p>
-              <p className="font-medium text-gray-900">{episode.guest}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Guest</p>
+              <p className="font-medium text-gray-900 dark:text-white">{episode.guest}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Duration</p>
-              <p className="font-medium text-gray-900">{episode.duration}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Duration</p>
+              <p className="font-medium text-gray-900 dark:text-white">{episode.duration}</p>
             </div>
           </div>
 
           {/* Audio Player */}
-          <div className="bg-gray-100 rounded-lg p-6 mb-6">
+          <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 mb-6">
             <audio controls className="w-full">
               <source src={episode.audioUrl} type="audio/mpeg" />
               Your browser does not support the audio element.
@@ -105,8 +105,8 @@ export default function PodcastEpisode() {
         {/* Guest Bio */}
         <Card className="mb-6">
           <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-3">About the Guest</h2>
-            <p className="text-gray-600 mb-4">{episode.guestBio}</p>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">About the Guest</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">{episode.guestBio}</p>
             {episode.guestWebsite && (
               <a
                 href={episode.guestWebsite}
@@ -124,16 +124,16 @@ export default function PodcastEpisode() {
         {/* Episode Description */}
         <Card className="mb-6">
           <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-3">Episode Description</h2>
-            <p className="text-gray-600">{episode.description}</p>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Episode Description</h2>
+            <p className="text-gray-600 dark:text-gray-300">{episode.description}</p>
           </CardContent>
         </Card>
 
         {/* Show Notes */}
         <Card className="mb-6">
           <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-3">Show Notes</h2>
-            <div className="prose prose-sm text-gray-600 whitespace-pre-line">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Show Notes</h2>
+            <div className="prose prose-sm text-gray-600 dark:text-gray-300 whitespace-pre-line">
               {episode.showNotes}
             </div>
           </CardContent>
@@ -142,7 +142,7 @@ export default function PodcastEpisode() {
         {/* Resources */}
         <Card className="mb-6">
           <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-3">Resources Mentioned</h2>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Resources Mentioned</h2>
             <ul className="space-y-2">
               {episode.resources.map((resource, index) => (
                 <li key={index}>
@@ -162,7 +162,7 @@ export default function PodcastEpisode() {
         </Card>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg p-8 text-white text-center">
+        <div className="bg-gradient-to-br from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 rounded-lg p-8 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Enjoyed this episode?</h2>
           <p className="mb-6">Help us reach more people by subscribing, rating, and reviewing our podcast!</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
