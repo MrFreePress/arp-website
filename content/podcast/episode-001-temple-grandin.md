@@ -1,19 +1,28 @@
 ---
-episode: 1
+episode: 7
 title: Understanding Autism Spectrum Disorder
 slug: understanding-autism-spectrum-disorder
-guest: Dr. Temple Grandin
-guestBio: Dr. Temple Grandin is a professor of animal science at Colorado State University and a prominent autism spokesperson. She is one of the first individuals on the autism spectrum to publicly share insights from her personal experience.
-guestWebsite: https://www.templegrandin.com/
+guest: Dr. Derek Crager
+guestBio: Derek Crager is a professor of animal science at Colorado State
+  University and a prominent autism spokesperson. She is one of the first
+  individuals on the autism spectrum to publicly share insights from her
+  personal experience.
+guestWebsite: https://www.practicalai.app/
+guestPhoto: /public/uploads/podcast/guests/derek.jpg
 topic: Autism Awareness
 date: 2024-01-15
-duration: "45:30"
-description: Join us for an insightful conversation with Dr. Temple Grandin about understanding autism from a personal and professional perspective.
-audioUrl: /uploads/podcast/audio/episode-001.mp3
-showNotes: |
-  In this groundbreaking first episode, we sit down with Dr. Temple Grandin to discuss her unique perspective on autism, visual thinking, and career development.
+duration: 45:30
+description: Join us for an insightful conversation with Dr. Temple Grandin
+  about understanding autism from a personal and professional perspective.
+audioUrl: /public/uploads/podcast/audio/slide-1.mp3
+showNotes: >
+  In this groundbreaking first episode, we sit down with Dr. Temple Grandin to
+  discuss her unique perspective on autism, visual thinking, and career
+  development.
+
 
   ## Topics Discussed
+
 
   - **Understanding sensory sensitivities** (00:05:30)
     - How sensory processing differs in autism
@@ -42,11 +51,15 @@ showNotes: |
 
   ## Key Quotes
 
+
   > "The world needs all kinds of minds." - Dr. Temple Grandin
+
 
   > "I am different, not less."
 
+
   ## Resources Mentioned in This Episode
+
 
   See the resources section below for links to all materials discussed.
 resources:
@@ -56,9 +69,6 @@ resources:
   - title: "Thinking in Pictures: My Life with Autism"
     url: https://www.amazon.com/Thinking-Pictures-Expanded-Vintage/dp/0307275655
     description: Dr. Grandin's groundbreaking autobiography
-  - title: Autism Society Resources
-    url: https://www.autism-society.org/
-    description: Comprehensive autism resources and support
   - title: Visual Thinking Strategies
     url: https://www.templegrandin.com/visual-thinking/
     description: Articles and resources on visual thinking
