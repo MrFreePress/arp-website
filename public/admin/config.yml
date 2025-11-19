@@ -26,12 +26,6 @@ collections:
     preview_path: "podcast/{{slug}}"
     summary: "Episode {{episode}}: {{title}} - {{guest}}"
     sortable_fields: ['episode', 'date', 'title']
-    view_filters:
-      - label: "Featured Episodes"
-        field: featured
-        pattern: true
-      - label: "By Topic"
-        field: topic
     fields:
       - {label: "Episode Number", name: "episode", widget: "number", value_type: "int", min: 1, hint: "Sequential episode number"}
       - {label: "Title", name: "title", widget: "string", hint: "Episode title (e.g., 'Understanding Autism Spectrum Disorder')"}
@@ -84,14 +78,6 @@ collections:
     preview_path: "blog/{{slug}}"
     summary: "{{title}} - {{author}} ({{date}})"
     sortable_fields: ['date', 'title', 'author', 'category']
-    view_filters:
-      - label: "Featured Posts"
-        field: featured
-        pattern: true
-      - label: "By Category"
-        field: category
-      - label: "By Author"
-        field: author
     fields:
       - {label: "Title", name: "title", widget: "string", hint: "Blog post title"}
       - {label: "Slug", name: "slug", widget: "string", hint: "URL-friendly version (auto-generated)", pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be lowercase with hyphens only"]}
@@ -141,14 +127,6 @@ collections:
     preview_path: "community"
     summary: "{{name}} - {{city}}, {{state}}"
     sortable_fields: ['name', 'state', 'city', 'type']
-    view_filters:
-      - label: "By State"
-        field: state
-      - label: "By Type"
-        field: type
-      - label: "Active Only"
-        field: status
-        pattern: "Active"
     fields:
       - {label: "Resource Name", name: "name", widget: "string", hint: "Name of the organization or group"}
       - {label: "Slug", name: "slug", widget: "string", hint: "URL-friendly identifier", pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be lowercase with hyphens only"]}
@@ -199,17 +177,6 @@ collections:
     preview_path: "library"
     summary: "{{title}} ({{type}})"
     sortable_fields: ['title', 'category', 'type', 'date']
-    view_filters:
-      - label: "By Category"
-        field: category
-      - label: "By Type"
-        field: type
-      - label: "Downloadable"
-        field: downloadable
-        pattern: true
-      - label: "Featured"
-        field: featured
-        pattern: true
     fields:
       - {label: "Title", name: "title", widget: "string", hint: "Resource title"}
       - {label: "Slug", name: "slug", widget: "string", hint: "URL-friendly identifier", pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be lowercase with hyphens only"]}
