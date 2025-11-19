@@ -1,0 +1,37 @@
+# LOCAL DEVELOPMENT CONFIG
+# Use this for testing locally without authentication
+# Copy this to config.yml temporarily for local testing
+
+backend:
+  name: test-repo
+
+# Enable editorial workflow (Draft → In Review → Ready)
+publish_mode: editorial_workflow
+
+# Media files configuration
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Collections configuration
+collections:
+  # ============================================
+  # PODCAST EPISODES
+  # ============================================
+  - name: "podcast"
+    label: "Podcast Episodes"
+    label_singular: "Podcast Episode"
+    folder: "content/podcast"
+    create: true
+    slug: "episode-{{episode}}-{{slug}}"
+    preview_path: "podcast/{{slug}}"
+    summary: "Episode {{episode}}: {{title}} - {{guest}}"
+    sortable_fields: ['episode', 'date', 'title']
+    fields:
+      - {label: "Episode Number", name: "episode", widget: "number", value_type: "int", min: 1}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Guest Name", name: "guest", widget: "string"}
+      - {label: "Topic", name: "topic", widget: "select", options: ["Autism Awareness", "Education", "Social Development"]}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Duration", name: "duration", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}

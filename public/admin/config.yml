@@ -1,9 +1,6 @@
 backend:
-  name: github
-  repo: MrFreePress/arp-website
+  name: git-gateway
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
 
 # Enable editorial workflow (Draft → In Review → Ready)
 publish_mode: editorial_workflow
