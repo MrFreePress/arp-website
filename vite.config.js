@@ -9,4 +9,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Explicitly set public directory (ensures admin files are copied)
+  publicDir: 'public',
+  build: {
+    // Ensure public folder contents are copied to dist
+    copyPublicDir: true,
+  },
 })
