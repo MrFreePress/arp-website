@@ -14,7 +14,7 @@ export default function About() {
               About Autism Resource Project
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-              Building a supportive community for autism, neurodiversity, and disabilities
+              Building a supportive community for autism, neurodiversity, and disabilities.
             </p>
           </div>
         </div>
