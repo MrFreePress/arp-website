@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import CommandPalette from '@/components/CommandPalette'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const location = useLocation()
 
   const navigation = [
@@ -59,6 +61,15 @@ export default function Header() {
                 {link.name}
               </Link>
             ))}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search site"
+              title="Search (Ctrl+K)"
+            >
+              <Search className="h-5 w-5" />
+            </Button>
             <ThemeToggle />
             <Button asChild size="sm">
               <Link to="/donate">Donate</Link>
@@ -67,6 +78,14 @@ export default function Header() {
 
           {/* Mobile menu button */}
           <div className="lg:hidden flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search site"
+            >
+              <Search className="h-5 w-5" />
+            </Button>
             <ThemeToggle />
             <button
               type="button"
@@ -110,6 +129,9 @@ export default function Header() {
           </div>
         )}
       </nav>
+
+      {/* Command Palette */}
+      <CommandPalette open={searchOpen} onOpenChange={setSearchOpen} />
     </header>
   )
 }
