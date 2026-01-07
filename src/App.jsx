@@ -1,5 +1,5 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import AccessibilityWidget from './components/AccessibilityWidget'
@@ -9,6 +9,7 @@ import Podcast from './pages/Podcast'
 import PodcastEpisode from './pages/PodcastEpisode'
 import Community from './pages/Community'
 import Library from './pages/Library'
+import ResourceDetail from './pages/ResourceDetail'
 import Marketplace from './pages/Marketplace'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
@@ -16,9 +17,20 @@ import Contact from './pages/Contact'
 import Donate from './pages/Donate'
 import AccessibilityTest from './pages/AccessibilityTest'
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+  return null
+}
+
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow" id="main-content">
@@ -29,6 +41,7 @@ function App() {
             <Route path="/podcast/:id" element={<PodcastEpisode />} />
             <Route path="/community" element={<Community />} />
             <Route path="/library" element={<Library />} />
+            <Route path="/library/resource/:id" element={<ResourceDetail />} />
             <Route path="/marketplace" element={<Marketplace />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />

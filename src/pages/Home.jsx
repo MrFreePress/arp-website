@@ -47,21 +47,29 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50 dark:from-yellow-950/20 dark:via-orange-950/20 dark:to-pink-950/20 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section 
+        className="relative py-20 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/hero-home.webp')",
+        }}
+      >
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/70 via-orange-900/60 to-pink-900/70 dark:from-yellow-950/80 dark:via-orange-950/70 dark:to-pink-950/80"></div>
+        
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl">
               <span className="block">It's a small, neurodiverse world!</span>
-              <span className="block text-primary mt-2">Together, We Build Community</span>
+              <span className="block text-yellow-200 mt-2">Together, We Build Community</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-white drop-shadow-md">
               We are your one-stop hub for autism, neurodiversity, and disabilities—offering 24/7 trusted information, support, and connections to empower individuals and families.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg">
                 <Link to="/library">Explore Resources</Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild variant="outline" size="lg" className="bg-white/90 hover:bg-white border-white">
                 <Link to="/podcast">Listen to Podcast</Link>
               </Button>
               <Button asChild variant="secondary" size="lg">
@@ -79,9 +87,24 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
               Welcome to the Autism Resource Project
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
               Here, we are more than just a website—we're a warm community of families, caregivers, educators, service providers and individuals on their own neurodiverse journeys. We know what it feels like to celebrate the little victories, face the big challenges, and sometimes feel alone in it all. We want you to know that you are never alone. ARP is here to be your companion, offering helpful resources, support, and encouragement whenever you need it.
             </p>
+            
+            {/* YouTube Video Embed */}
+            <div className="mt-8 mx-auto max-w-3xl">
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                  src="https://www.youtube.com/embed/ZBeQQ0yctYc"
+                  title="Autism Resource Project Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </section>

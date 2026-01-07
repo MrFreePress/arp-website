@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
@@ -192,10 +193,10 @@ export default function Library() {
                   <CardContent>
                     <div className="space-y-2">
                       <Button asChild className="w-full">
-                        <a href={resource.url} target="_blank" rel="noopener noreferrer">
+                        <Link to={`/library/resource/${resource.id}`}>
                           <ExternalLink className="mr-2 h-4 w-4" />
                           View Resource
-                        </a>
+                        </Link>
                       </Button>
                       {resource.downloadable && (
                         <Button variant="outline" className="w-full">

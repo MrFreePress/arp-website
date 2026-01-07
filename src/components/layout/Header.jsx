@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const location = useLocation()
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -17,6 +18,13 @@ export default function Header() {
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ]
+
+  const isActive = (href) => {
+    if (href === '/') {
+      return location.pathname === '/'
+    }
+    return location.pathname.startsWith(href)
+  }
 
   return (
     <header className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50 border-b dark:border-gray-800">
@@ -42,7 +50,11 @@ export default function Header() {
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors"
+                className={`text-sm font-medium transition-colors ${
+                  isActive(link.href)
+                    ? 'text-primary dark:text-primary font-semibold border-b-2 border-primary'
+                    : 'text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary'
+                }`}
               >
                 {link.name}
               </Link>
@@ -79,7 +91,11 @@ export default function Header() {
                 <Link
                   key={link.name}
                   to={link.href}
-                  className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary rounded-md"
+                  className={`block px-3 py-2 text-base font-medium rounded-md ${
+                    isActive(link.href)
+                      ? 'bg-primary/10 text-primary dark:text-primary font-semibold'
+                      : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary'
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
