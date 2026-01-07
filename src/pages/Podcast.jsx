@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -46,6 +46,21 @@ export default function Podcast() {
   const [selectedGuest, setSelectedGuest] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
 
+  useEffect(() => {
+    // Load the LeadConnector form embed script
+    const script = document.createElement('script')
+    script.src = 'https://link.msgsndr.com/js/form_embed.js'
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      // Cleanup script on unmount
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
+    }
+  }, [])
+
   // Extract unique topics and guests
   const topics = ['all', ...new Set(episodes.map(ep => ep.topic))]
   const guests = ['all', ...new Set(episodes.map(ep => ep.guest))]
@@ -84,6 +99,9 @@ export default function Podcast() {
               </Button>
               <Button variant="outline" size="lg">
                 Subscribe on Apple Podcasts
+              </Button>
+              <Button variant="outline" size="lg">
+                Subscribe on Amazon
               </Button>
             </div>
           </div>
@@ -202,13 +220,24 @@ export default function Podcast() {
           <p className="text-xl mb-8 text-blue-100">
             Subscribe to get notified about new episodes and exclusive content
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary">
-              Subscribe to Newsletter
-            </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-primary">
-              Rate & Review
-            </Button>
+          <div className="w-full max-w-2xl mx-auto" style={{ minHeight: '605px' }}>
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/form/ZXoVFsNaaAFBNomYKyc8"
+              style={{ width: '100%', height: '605px', border: 'none', borderRadius: '3px' }}
+              id="inline-ZXoVFsNaaAFBNomYKyc8" 
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Subscribe to Our List"
+              data-height="605"
+              data-layout-iframe-id="inline-ZXoVFsNaaAFBNomYKyc8"
+              data-form-id="ZXoVFsNaaAFBNomYKyc8"
+              title="Subscribe to Our List"
+            />
           </div>
         </div>
       </section>

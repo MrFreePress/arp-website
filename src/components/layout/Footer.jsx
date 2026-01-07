@@ -1,27 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Facebook, Instagram, Mail } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 
 export default function Footer() {
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault()
-    // Newsletter signup logic will be integrated with email marketing system
-    alert('Newsletter signup will be integrated with your email marketing platform')
-  }
 
   return (
     <footer className="bg-gray-900 dark:bg-gray-950 text-white border-t dark:border-gray-800">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* About Section */}
           <div>
             <div className="mb-4">
               <img 
                 src="/arp-logo.jpg" 
                 alt="Autism Resource Project" 
-                className="h-16 w-auto brightness-0 invert"
+                className="h-16 w-auto"
               />
             </div>
             <p className="text-gray-400 text-sm">
@@ -93,51 +85,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Stay Connected</h3>
-            <p className="text-gray-400 text-sm mb-4">
-              Subscribe to our newsletter for updates and resources.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="space-y-2">
-              <Input
-                type="email"
-                placeholder="Your email"
-                className="bg-gray-800 border-gray-700 text-white"
-                required
-              />
-              <Button type="submit" className="w-full">
-                Subscribe
-              </Button>
-            </form>
-            <div className="flex space-x-4 mt-6">
-              <a
-                href="https://www.facebook.com/autismresourcepodcast"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-6 w-6" />
-              </a>
-              <a
-                href="https://www.instagram.com/TheAutismResourceProject"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-6 w-6" />
-              </a>
-              <a
-                href="mailto:info@autismresourceproject.org"
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="h-6 w-6" />
-              </a>
-            </div>
-          </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">

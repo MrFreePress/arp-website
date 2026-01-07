@@ -216,7 +216,7 @@ export default function Library() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-br from-orange-600 to-yellow-600 text-white">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Download Our Impact Report</h2>
+          <h2 className="text-3xl font-bold mb-4">Learn about ARP Navigator</h2>
           <p className="text-xl mb-8 text-orange-100">
             Get our comprehensive guide and see how we're making a difference in the autism community
           </p>

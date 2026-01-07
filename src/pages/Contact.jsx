@@ -1,30 +1,22 @@
-import React, { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import React, { useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Mail, Phone, MapPin, Send } from 'lucide-react'
+import { Mail, Phone, MapPin } from 'lucide-react'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  })
+  useEffect(() => {
+    // Load the LeadConnector form embed script
+    const script = document.createElement('script')
+    script.src = 'https://link.msgsndr.com/js/form_embed.js'
+    script.async = true
+    document.body.appendChild(script)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Form submission logic will be integrated with email system
-    alert('Thank you for your message! We will get back to you soon.')
-    setFormData({ name: '', email: '', subject: '', message: '' })
-  }
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
+    return () => {
+      // Cleanup script on unmount
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -56,69 +48,25 @@ export default function Contact() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Name *
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email *
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                        Subject *
-                      </label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        type="text"
-                        required
-                        value={formData.subject}
-                        onChange={handleChange}
-                        placeholder="What is this regarding?"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Message *
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        required
-                        rows={6}
-                        value={formData.message}
-                        onChange={handleChange}
-                        placeholder="Your message..."
-                        className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      />
-                    </div>
-                    <Button type="submit" size="lg" className="w-full">
-                      <Send className="mr-2 h-5 w-5" />
-                      Send Message
-                    </Button>
-                  </form>
+                  <div className="w-full" style={{ minHeight: '605px' }}>
+                    <iframe
+                      src="https://api.leadconnectorhq.com/widget/form/PpJbClL6USf3lTFSedSS"
+                      style={{ width: '100%', height: '605px', border: 'none', borderRadius: '3px' }}
+                      id="inline-PpJbClL6USf3lTFSedSS" 
+                      data-layout="{'id':'INLINE'}"
+                      data-trigger-type="alwaysShow"
+                      data-trigger-value=""
+                      data-activation-type="alwaysActivated"
+                      data-activation-value=""
+                      data-deactivation-type="neverDeactivate"
+                      data-deactivation-value=""
+                      data-form-name="ARP Contact Form"
+                      data-height="605"
+                      data-layout-iframe-id="inline-PpJbClL6USf3lTFSedSS"
+                      data-form-id="PpJbClL6USf3lTFSedSS"
+                      title="ARP Contact Form"
+                    />
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -143,8 +91,8 @@ export default function Contact() {
                     <Phone className="h-5 w-5 text-primary mt-1" />
                     <div>
                       <p className="font-medium text-gray-900 dark:text-white">Phone</p>
-                      <a href="tel:+1234567890" className="text-primary hover:underline">
-                        (123) 456-7890
+                      <a href="tel:+8184519485" className="text-primary hover:underline">
+                        (818) 451-9485
                       </a>
                     </div>
                   </div>
@@ -166,11 +114,11 @@ export default function Contact() {
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-600 dark:text-gray-400">Monday - Friday</span>
-                      <span className="font-medium dark:text-gray-200">9:00 AM - 5:00 PM</span>
+                      <span className="font-medium dark:text-gray-200">9:00 AM - 5:00 PM PST</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600 dark:text-gray-400">Saturday</span>
-                      <span className="font-medium dark:text-gray-200">10:00 AM - 2:00 PM</span>
+                      <span className="font-medium dark:text-gray-200">10:00 AM - 2:00 PM PST</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600 dark:text-gray-400">Sunday</span>

@@ -30,29 +30,38 @@ export default function Marketplace() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Card className="overflow-hidden">
             <CardContent className="p-0">
-              {/* Placeholder for Shopify/ThriveCart Embed */}
-              <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-12 text-center min-h-[600px] flex flex-col items-center justify-center">
-                <ShoppingBag className="h-24 w-24 text-gray-400 mb-6" />
-                <h2 className="text-2xl font-bold text-gray-700 mb-4">
-                  Marketplace Integration
+              {/* Coming Soon Placeholder */}
+              <div className="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 p-12 text-center min-h-[600px] flex flex-col items-center justify-center">
+                <ShoppingBag className="h-24 w-24 text-gray-400 dark:text-gray-500 mb-6" />
+                <div className="inline-flex items-center justify-center px-6 py-3 mb-4 rounded-full bg-yellow-100 dark:bg-yellow-900/30 border-2 border-yellow-400 dark:border-yellow-600">
+                  <span className="text-lg font-bold text-yellow-800 dark:text-yellow-300">Coming Soon</span>
+                </div>
+                <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-4">
+                  Marketplace Opening Soon
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-md">
-                  This section will display your Shopify or ThriveCart storefront. 
-                  Simply embed your store code below to showcase your products.
+                <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-lg text-lg">
+                  We're curating a collection of quality products and resources specifically for the autism and neurodiversity community. Check back soon!
                 </p>
-                <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-2xl w-full text-left">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Integration Instructions:</h3>
-                  <ol className="list-decimal list-inside space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                    <li>Get your embed code from Shopify or ThriveCart</li>
-                    <li>Replace the placeholder div in Marketplace.jsx</li>
-                    <li>Add the embed code within the CardContent component</li>
-                    <li>Test the integration to ensure proper display</li>
-                  </ol>
-                  <div className="mt-4 p-4 bg-gray-50 rounded border border-gray-200">
-                    <code className="text-xs text-gray-700">
-                      {`<!-- Example Shopify Embed -->\n<div id="shopify-embed"></div>\n<script src="your-shopify-embed.js"></script>`}
-                    </code>
-                  </div>
+                <div className="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-2xl w-full shadow-lg">
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-4 text-xl">What to Expect:</h3>
+                  <ul className="space-y-3 text-left text-gray-600 dark:text-gray-300">
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>
+                      <span>Community-curated products and tools</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>
+                      <span>Sensory-friendly items and resources</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>
+                      <span>Educational materials and learning aids</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-3 mt-1">✓</span>
+                      <span>Proceeds supporting our free community programs</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </CardContent>

@@ -42,7 +42,7 @@ export default function Donate() {
 
   const impactStats = [
     { icon: Users, value: '10,000+', label: 'Families Served' },
-    { icon: Podcast, value: '100+', label: 'Podcast Episodes' },
+    { icon: Podcast, value: '200+', label: 'Podcast Episodes' },
     { icon: BookOpen, value: '500+', label: 'Resources Shared' },
     { icon: Heart, value: '$250K+', label: 'In Free Services' },
   ]
@@ -142,15 +142,66 @@ export default function Donate() {
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 text-white">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <blockquote className="text-xl italic mb-6">
-            "The Autism Resource Project has been a lifeline for our family. The free resources and supportive community have made all the difference in our journey."
-          </blockquote>
-          <p className="font-semibold">— Sarah M., Parent</p>
+      {/* Alternative Platforms */}
+      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Alternative Platforms</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300">Choose your preferred payment method</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Venmo */}
+            <Card className="text-center">
+              <CardHeader>
+                <CardTitle>Venmo</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-center mb-4">
+                  <img 
+                    src="/venmo-qr.webp" 
+                    alt="Venmo QR Code" 
+                    className="w-48 h-48 object-contain"
+                  />
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Scan to donate via Venmo</p>
+              </CardContent>
+            </Card>
+
+            {/* PayPal */}
+            <Card className="text-center">
+              <CardHeader>
+                <CardTitle>PayPal</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-center mb-4">
+                  <img 
+                    src="/paypal-qr.webp" 
+                    alt="PayPal QR Code" 
+                    className="w-48 h-48 object-contain"
+                  />
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Scan to donate via PayPal</p>
+              </CardContent>
+            </Card>
+
+            {/* Zelle */}
+            <Card className="text-center flex flex-col justify-center">
+              <CardHeader>
+                <CardTitle>Zelle</CardTitle>
+              </CardHeader>
+              <CardContent className="flex-1 flex flex-col justify-center">
+                <div className="py-8">
+                  <p className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Send to:</p>
+                  <p className="text-base text-primary font-medium break-all">
+                    info@autismresourceproject.org
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
+
     </div>
   )
 }

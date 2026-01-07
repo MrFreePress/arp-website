@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select } from '@/components/ui/select'
@@ -51,6 +51,21 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
 
+  useEffect(() => {
+    // Load the LeadConnector form embed script
+    const script = document.createElement('script')
+    script.src = 'https://link.msgsndr.com/js/form_embed.js'
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      // Cleanup script on unmount
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
+    }
+  }, [])
+
   // Extract unique categories
   const categories = ['all', ...new Set(posts.map(p => p.category))]
 
@@ -75,7 +90,7 @@ export default function Blog() {
               ARP Blog
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-              Read the latest articles, research updates, and personal stories from our community. Stay informed and inspired.
+              Read the latest articles, research updates, podcast transcripts, and personal stories from our community. Stay informed and inspired.
             </p>
           </div>
         </div>
@@ -190,17 +205,26 @@ export default function Blog() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
           <p className="text-xl mb-8 text-indigo-100">
-            Subscribe to our newsletter and never miss a new article or resource
+            Subscribe to our list and never miss a new article or resource
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <Input
-              type="email"
-              placeholder="Your email address"
-              className="bg-white text-gray-900"
+          <div className="w-full max-w-2xl mx-auto" style={{ minHeight: '605px' }}>
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/form/ZXoVFsNaaAFBNomYKyc8"
+              style={{ width: '100%', height: '605px', border: 'none', borderRadius: '3px' }}
+              id="inline-ZXoVFsNaaAFBNomYKyc8" 
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Subscribe to Our List"
+              data-height="605"
+              data-layout-iframe-id="inline-ZXoVFsNaaAFBNomYKyc8"
+              data-form-id="ZXoVFsNaaAFBNomYKyc8"
+              title="Subscribe to Our List"
             />
-            <Button size="lg" variant="secondary">
-              Subscribe
-            </Button>
           </div>
         </div>
       </section>

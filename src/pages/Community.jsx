@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { MapPin, Users, Calendar, ExternalLink } from 'lucide-react'
 
 // Sample community data - ARP will provide actual data
@@ -45,6 +46,104 @@ export default function Community() {
   const [selectedState, setSelectedState] = useState('all')
   const [selectedCity, setSelectedCity] = useState('all')
   const [selectedType, setSelectedType] = useState('all')
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
+  useEffect(() => {
+    // Load the LeadConnector form embed script
+    const script = document.createElement('script')
+    script.src = 'https://link.msgsndr.com/js/form_embed.js'
+    script.async = true
+    document.body.appendChild(script)
+
+    let observerCleanup = null
+
+    // Listen for form submission messages from iframe
+    const handleMessage = (event) => {
+      console.log('Message received:', event.data)
+      
+      // Check for various LeadConnector/form submission event patterns
+      if (event.data) {
+        const isFormSubmission = 
+          event.data.type === 'hsFormCallback' ||
+          event.data.eventName === 'onFormSubmitted' ||
+          event.data.type === 'form-submitted' ||
+          event.data.event === 'form-submitted' ||
+          event.data.message === 'form-submitted' ||
+          (typeof event.data === 'string' && (event.data.includes('submit') || event.data.includes('success')))
+        
+        if (isFormSubmission) {
+          console.log('Form submission detected via postMessage, scrolling and setting timer')
+          
+          // Scroll modal content to top when confirmation appears
+          const modalContent = document.querySelector('[role="dialog"]')
+          if (modalContent) {
+            modalContent.scrollTop = 0
+          }
+
+          // Auto-close modal after 3 seconds
+          setTimeout(() => {
+            console.log('Closing modal after 3 seconds')
+            setIsDialogOpen(false)
+          }, 3000)
+        }
+      }
+    }
+
+    window.addEventListener('message', handleMessage)
+
+    return () => {
+      // Cleanup script and event listener on unmount
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
+      window.removeEventListener('message', handleMessage)
+      if (observerCleanup) {
+        observerCleanup()
+      }
+    }
+  }, [])
+
+  // Monitor iframe height changes as alternative detection method
+  useEffect(() => {
+    if (!isDialogOpen) return
+
+    const iframe = document.getElementById('inline-9VayflYHGSuzPaYWM0cQ')
+    if (!iframe) return
+
+    let initialHeight = null
+    let heightChangeDetected = false
+
+    const checkHeightChange = () => {
+      const currentHeight = iframe.offsetHeight
+      
+      if (initialHeight === null) {
+        initialHeight = currentHeight
+      } else if (!heightChangeDetected && currentHeight !== initialHeight && Math.abs(currentHeight - initialHeight) > 100) {
+        // Significant height change detected (likely form replaced with confirmation)
+        console.log('Form height change detected (form submission likely)', { initialHeight, currentHeight })
+        heightChangeDetected = true
+        
+        // Scroll modal to top
+        const modalContent = document.querySelector('[role="dialog"]')
+        if (modalContent) {
+          modalContent.scrollTop = 0
+        }
+        
+        // Close after 3 seconds
+        setTimeout(() => {
+          console.log('Closing modal after 3 seconds (height change method)')
+          setIsDialogOpen(false)
+        }, 3000)
+      }
+    }
+
+    // Check every 500ms for height changes
+    const interval = setInterval(checkHeightChange, 500)
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [isDialogOpen])
 
   // Extract unique values
   const states = ['all', ...new Set(sampleCommunities.map(c => c.state))]
@@ -191,9 +290,40 @@ export default function Community() {
           <p className="text-xl mb-8 text-green-100">
             Help us grow our network by submitting your local support group or organization
           </p>
-          <Button size="lg" variant="secondary">
-            Submit Community Information
-          </Button>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button size="lg" variant="secondary">
+                Submit Community Information
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>Add Your Community</DialogTitle>
+                <DialogDescription>
+                  Fill out the form below to submit your community information to our directory.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="w-full" style={{ minHeight: '1151px' }}>
+                <iframe
+                  src="https://api.leadconnectorhq.com/widget/form/9VayflYHGSuzPaYWM0cQ"
+                  style={{ width: '100%', height: '1151px', border: 'none', borderRadius: '3px' }}
+                  id="inline-9VayflYHGSuzPaYWM0cQ" 
+                  data-layout="{'id':'INLINE'}"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="Add My Community"
+                  data-height="1151"
+                  data-layout-iframe-id="inline-9VayflYHGSuzPaYWM0cQ"
+                  data-form-id="9VayflYHGSuzPaYWM0cQ"
+                  title="Add My Community"
+                />
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </section>
     </div>

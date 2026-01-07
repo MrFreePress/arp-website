@@ -69,7 +69,7 @@ export default function Home() {
               <Button asChild size="lg">
                 <Link to="/library">Explore Resources</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="bg-white/90 hover:bg-white border-white">
+              <Button asChild variant="outline" size="lg" className="bg-white hover:bg-white/90 border-white text-gray-900 hover:text-gray-900">
                 <Link to="/podcast">Listen to Podcast</Link>
               </Button>
               <Button asChild variant="secondary" size="lg">
