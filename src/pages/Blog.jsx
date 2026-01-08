@@ -10,7 +10,7 @@ import { Search, Calendar, User, Tag, Share2 } from 'lucide-react'
 const samplePosts = [
   {
     id: 1,
-    title: '10 Essential Tips for Navigating Autism Diagnosis',
+    title: '10 Essential Tips for Navigating an Autism Diagnosis',
     slug: 'navigating-autism-diagnosis-tips',
     author: 'ARP Team',
     date: '2024-01-20',
