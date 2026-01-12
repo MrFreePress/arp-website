@@ -61,7 +61,7 @@ collections:
       - {label: "Guest Name", name: "guest", widget: "string", hint: "Full name of the guest"}
       - {label: "Guest Bio", name: "guestBio", widget: "text", hint: "Short biography of the guest (2-3 sentences)"}
       - {label: "Guest Website", name: "guestWebsite", widget: "string", required: false, hint: "Guest's website URL (optional)"}
-      - {label: "Guest Photo", name: "guestPhoto", widget: "image", required: false, media_folder: "/public/uploads/podcast/guests", hint: "Photo of the guest (optional)"}
+      - {label: "Guest Photo", name: "guestPhoto", widget: "image", required: false, media_folder: "public/uploads/podcast/guests", hint: "Photo of the guest (optional)"}
       
       # Episode Details
       - {label: "Topic/Category", name: "topic", widget: "select", options: ["Autism Awareness", "Education", "Social Development", "Communication", "Daily Living", "Employment", "Health & Wellness", "Parenting", "Personal Stories", "Advocacy"]}
@@ -70,7 +70,7 @@ collections:
       - {label: "Short Description", name: "description", widget: "text", hint: "Brief description for episode list (150-200 characters)"}
       
       # Audio File
-      - {label: "Audio File", name: "audioUrl", widget: "file", media_folder: "/public/uploads/podcast/audio", allow_multiple: false, hint: "Upload MP3 audio file"}
+      - {label: "Audio File", name: "audioUrl", widget: "file", media_folder: "public/uploads/podcast/audio", allow_multiple: false, hint: "Upload MP3 audio file"}
       
       # Show Notes
       - {label: "Show Notes", name: "showNotes", widget: "markdown", hint: "Detailed show notes with timestamps, topics discussed, etc."}
@@ -118,7 +118,7 @@ collections:
       
       # Summary & Images
       - {label: "Excerpt", name: "excerpt", widget: "text", hint: "Short summary for blog list (150-200 characters)"}
-      - {label: "Featured Image", name: "image", widget: "image", media_folder: "/public/uploads/blog/images", hint: "Main image for the post"}
+      - {label: "Featured Image", name: "image", widget: "image", media_folder: "public/uploads/blog/images", hint: "Main image for the post"}
       - {label: "Image Alt Text", name: "imageAlt", widget: "string", hint: "Describe the image for accessibility"}
       - {label: "Read Time", name: "readTime", widget: "string", default: "5 min read", hint: "Estimated reading time (e.g., '8 min read')"}
       
@@ -150,7 +150,7 @@ collections:
     folder: "content/community"
     create: true
     slug: "{{slug}}"
-    preview_path: "community"
+    preview_path: "community/{{slug}}"
     summary: "{{name}} - {{city}}, {{state}}"
     sortable_fields: ['name', 'state', 'city', 'type']
     fields:
@@ -186,7 +186,7 @@ collections:
       - {label: "Accessibility Features", name: "accessibility", widget: "list", required: false, hint: "Wheelchair access, ASL interpreter, etc."}
       
       # Metadata
-      - {label: "Logo/Image", name: "logo", widget: "image", required: false, media_folder: "/public/uploads/community/logos"}
+      - {label: "Logo/Image", name: "logo", widget: "image", required: false, media_folder: "public/uploads/community/logos"}
       - {label: "Featured", name: "featured", widget: "boolean", default: false}
       - {label: "Status", name: "status", widget: "select", options: ["Active", "Inactive", "Seasonal"], default: "Active"}
       - {label: "Last Verified", name: "lastVerified", widget: "datetime", required: false, hint: "When was this information last verified?"}
@@ -200,7 +200,7 @@ collections:
     folder: "content/library"
     create: true
     slug: "{{slug}}"
-    preview_path: "library"
+    preview_path: "library/{{slug}}"
     summary: "{{title}} ({{type}})"
     sortable_fields: ['title', 'category', 'type', 'date']
     fields:
@@ -214,7 +214,7 @@ collections:
       
       # Resource Location
       - {label: "Downloadable", name: "downloadable", widget: "boolean", default: false, hint: "Is this file hosted on our site?"}
-      - {label: "File Upload", name: "file", widget: "file", required: false, media_folder: "/public/uploads/library/files", hint: "Upload PDF, DOC, or other file (if downloadable)"}
+      - {label: "File Upload", name: "file", widget: "file", required: false, media_folder: "public/uploads/library/files", hint: "Upload PDF, DOC, or other file (if downloadable)"}
       - {label: "External URL", name: "url", widget: "string", required: false, hint: "Link to external resource (if not downloadable)"}
       
       # Additional Information
@@ -238,7 +238,7 @@ collections:
       - {label: "Table of Contents", name: "tableOfContents", widget: "list", required: false, hint: "Main sections or chapters"}
       
       # Metadata
-      - {label: "Thumbnail Image", name: "thumbnail", widget: "image", required: false, media_folder: "/public/uploads/library/thumbnails"}
+      - {label: "Thumbnail Image", name: "thumbnail", widget: "image", required: false, media_folder: "public/uploads/library/thumbnails"}
       - {label: "Featured", name: "featured", widget: "boolean", default: false}
       - {label: "Status", name: "status", widget: "select", options: ["Published", "Archived", "Coming Soon"], default: "Published"}
       - {label: "Download Count", name: "downloadCount", widget: "number", required: false, value_type: "int", min: 0, hint: "Track popularity"}
