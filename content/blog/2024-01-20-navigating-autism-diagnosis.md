@@ -12,7 +12,7 @@ tags:
   - getting started
 excerpt: Receiving an autism diagnosis can be overwhelming. Here are ten
   essential tips to help you navigate this journey with confidence and support.
-image: public/uploads/blog/images/3-2-.webp
+image: public/uploads/blog/images/gemini_generated_image_vhjhtfvhjhtfvhjh.png
 imageAlt: Parent holding child's hand, symbolizing support and guidance through
   the autism diagnosis journey
 readTime: 8 min read
