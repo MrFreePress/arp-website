@@ -11,7 +11,7 @@ import matter from 'gray-matter'
  */
 export async function loadPodcastEpisodes() {
   try {
-    const modules = import.meta.glob('/content/podcast/*.md', { as: 'raw', eager: true })
+    const modules = import.meta.glob('/content/podcast/*.md', { query: '?raw', import: 'default', eager: true })
     const episodes = []
 
     for (const [path, content] of Object.entries(modules)) {
@@ -39,7 +39,7 @@ export async function loadPodcastEpisodes() {
  */
 export async function loadPodcastEpisode(slug) {
   try {
-    const modules = import.meta.glob('/content/podcast/*.md', { as: 'raw', eager: true })
+    const modules = import.meta.glob('/content/podcast/*.md', { query: '?raw', import: 'default', eager: true })
     
     for (const [path, content] of Object.entries(modules)) {
       const { data, content: body } = matter(content)
@@ -68,7 +68,7 @@ export async function loadPodcastEpisode(slug) {
  */
 export async function loadBlogPosts() {
   try {
-    const modules = import.meta.glob('/content/blog/*.md', { as: 'raw', eager: true })
+    const modules = import.meta.glob('/content/blog/*.md', { query: '?raw', import: 'default', eager: true })
     const posts = []
 
     for (const [path, content] of Object.entries(modules)) {
@@ -96,7 +96,7 @@ export async function loadBlogPosts() {
  */
 export async function loadBlogPost(slug) {
   try {
-    const modules = import.meta.glob('/content/blog/*.md', { as: 'raw', eager: true })
+    const modules = import.meta.glob('/content/blog/*.md', { query: '?raw', import: 'default', eager: true })
     
     for (const [path, content] of Object.entries(modules)) {
       const { data, content: body } = matter(content)
@@ -125,7 +125,7 @@ export async function loadBlogPost(slug) {
  */
 export async function loadCommunityResources() {
   try {
-    const modules = import.meta.glob('/content/community/*.md', { as: 'raw', eager: true })
+    const modules = import.meta.glob('/content/community/*.md', { query: '?raw', import: 'default', eager: true })
     const resources = []
 
     for (const [path, content] of Object.entries(modules)) {
@@ -152,7 +152,7 @@ export async function loadCommunityResources() {
  */
 export async function loadLibraryResources() {
   try {
-    const modules = import.meta.glob('/content/library/*.md', { as: 'raw', eager: true })
+    const modules = import.meta.glob('/content/library/*.md', { query: '?raw', import: 'default', eager: true })
     const resources = []
 
     for (const [path, content] of Object.entries(modules)) {
@@ -180,7 +180,7 @@ export async function loadLibraryResources() {
  */
 export async function loadLibraryResource(slug) {
   try {
-    const modules = import.meta.glob('/content/library/*.md', { as: 'raw', eager: true })
+    const modules = import.meta.glob('/content/library/*.md', { query: '?raw', import: 'default', eager: true })
     
     for (const [path, content] of Object.entries(modules)) {
       const { data, content: body } = matter(content)
