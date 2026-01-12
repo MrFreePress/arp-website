@@ -6,6 +6,23 @@ import matter from 'gray-matter'
  */
 
 /**
+ * Normalize image path - removes 'public/' prefix if present
+ * CMS stores files in public/ but URLs should not include it
+ * @param {string} imagePath - Image path from CMS
+ * @returns {string} Normalized path for browser
+ */
+function normalizeImagePath(imagePath) {
+  if (!imagePath) return null
+  // Remove 'public/' or 'public' prefix if present
+  let normalized = imagePath.replace(/^public\//, '').replace(/^public/, '')
+  // Ensure path starts with /
+  if (normalized && !normalized.startsWith('/') && !normalized.startsWith('http')) {
+    normalized = '/' + normalized
+  }
+  return normalized
+}
+
+/**
  * Load all podcast episodes from content/podcast directory
  * @returns {Promise<Array>} Array of podcast episode objects
  */
@@ -79,6 +96,7 @@ export async function loadBlogPosts() {
         ...data,
         slug: data.slug || slug,
         id: data.slug || slug,
+        image: normalizeImagePath(data.image),
       })
     }
 
@@ -108,6 +126,7 @@ export async function loadBlogPost(slug) {
           body,
           slug: data.slug || fileSlug,
           id: data.slug || fileSlug,
+          image: normalizeImagePath(data.image),
         }
       }
     }

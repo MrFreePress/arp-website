@@ -118,12 +118,15 @@ export default function Blog() {
             {filteredPosts.map((post) => (
               <Card key={post.id} className="hover:shadow-lg transition-shadow overflow-hidden">
                 {post.image ? (
-                  <div className="h-48 overflow-hidden">
+                  <div className="h-48 overflow-hidden bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/20 dark:to-purple-900/20">
                     <img 
                       src={post.image} 
                       alt={post.imageAlt || post.title}
                       className="w-full h-full object-cover"
                       loading="lazy"
+                      onError={(e) => {
+                        e.target.style.display = 'none'
+                      }}
                     />
                   </div>
                 ) : (

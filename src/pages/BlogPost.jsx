@@ -76,7 +76,22 @@ export default function BlogPost() {
         </Link>
 
         {/* Article Header */}
-        <article className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 mb-6">
+        <article className="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden mb-6">
+          {/* Featured Image */}
+          {post.image && (
+            <div className="w-full h-64 sm:h-80 lg:h-96 overflow-hidden">
+              <img 
+                src={post.image} 
+                alt={post.imageAlt || post.title}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none'
+                }}
+              />
+            </div>
+          )}
+          
+          <div className="p-8">
           <div className="mb-6">
             <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-sm font-medium text-indigo-800 mb-4">
               {post.category}
@@ -120,8 +135,9 @@ export default function BlogPost() {
           </div>
 
           {/* Article Content */}
-          <div className="prose prose-lg max-w-none dark:prose-invert">
+          <div className="prose prose-lg max-w-none dark:prose-invert px-8 pb-8">
             <ReactMarkdown>{post.body}</ReactMarkdown>
+          </div>
           </div>
         </article>
 
