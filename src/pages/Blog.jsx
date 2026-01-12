@@ -46,8 +46,8 @@ export default function Blog() {
     const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory
     const matchesSearch = searchQuery === '' || 
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+      (post.excerpt && post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (post.tags && post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())))
     
     return matchesCategory && matchesSearch
   })
@@ -162,14 +162,16 @@ export default function Blog() {
                         <span>{new Date(post.date).toLocaleDateString()}</span>
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-2">
-                      {post.tags.slice(0, 3).map(tag => (
-                        <span key={tag} className="inline-flex items-center text-xs text-gray-600">
-                          <Tag className="h-3 w-3 mr-1" />
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    {post.tags?.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {post.tags.slice(0, 3).map(tag => (
+                          <span key={tag} className="inline-flex items-center text-xs text-gray-600">
+                            <Tag className="h-3 w-3 mr-1" />
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     <div className="flex gap-2 pt-2">
                       <Button asChild className="flex-1">
                         <Link to={`/blog/${post.slug}`}>Read More</Link>
