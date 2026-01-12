@@ -9,7 +9,7 @@ excerpt: |-
   ..here we go on our way today...
 
   what is a dolphin?
-image: public/uploads/blog/images/consulting-demand.jpg
+image: /uploads/blog/images/consulting-demand.jpg
 imageAlt: photo of photo
 readTime: 5 min read
 featured: true
