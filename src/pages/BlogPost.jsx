@@ -1,58 +1,52 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowLeft, Calendar, User, Tag, Share2, Facebook, Twitter, Linkedin } from 'lucide-react'
+import { loadBlogPost, loadBlogPosts } from '@/lib/contentLoader'
+import ReactMarkdown from 'react-markdown'
 
 export default function BlogPost() {
   const { slug } = useParams()
+  const [post, setPost] = useState(null)
+  const [relatedPosts, setRelatedPosts] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  // Sample blog post - replace with actual data fetching
-  const post = {
-    title: '10 Essential Tips for Navigating Autism Diagnosis',
-    author: 'ARP Team',
-    date: '2024-01-20',
-    category: 'Getting Started',
-    tags: ['diagnosis', 'early intervention', 'support'],
-    readTime: '8 min read',
-    content: `
-      <p>Receiving an autism diagnosis can be overwhelming for families. Whether you're a parent, caregiver, or individual receiving a diagnosis, it's natural to feel a mix of emotions—from relief at finally having answers to uncertainty about what comes next.</p>
+  useEffect(() => {
+    async function fetchPost() {
+      const data = await loadBlogPost(slug)
+      setPost(data)
+      
+      if (data) {
+        const allPosts = await loadBlogPosts()
+        const related = allPosts
+          .filter(p => p.slug !== slug && p.category === data.category)
+          .slice(0, 2)
+        setRelatedPosts(related)
+      }
+      
+      setLoading(false)
+    }
+    fetchPost()
+  }, [slug])
 
-      <p>At the Autism Resource Project, we've supported thousands of families through this journey. Here are ten essential tips to help you navigate the path forward with confidence and support.</p>
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <p className="text-gray-600 dark:text-gray-300">Loading article...</p>
+      </div>
+    )
+  }
 
-      <h2>1. Take Time to Process</h2>
-      <p>Give yourself permission to feel whatever emotions arise. There's no "right" way to react to a diagnosis. Some families feel relief, others feel grief, and many experience both. All of these feelings are valid.</p>
-
-      <h2>2. Educate Yourself from Reliable Sources</h2>
-      <p>Seek information from reputable organizations and medical professionals. Be cautious of outdated information or sources that promote harmful "cures." Focus on understanding your child's unique strengths and challenges.</p>
-
-      <h2>3. Connect with the Community</h2>
-      <p>You're not alone on this journey. Connect with other families, join support groups, and engage with the autism community. Hearing from others who've walked this path can provide invaluable insights and emotional support.</p>
-
-      <h2>4. Start Early Intervention Services</h2>
-      <p>Early intervention can make a significant difference. Contact your local early intervention program or school district to learn about available services. Don't wait—the sooner you start, the better.</p>
-
-      <h2>5. Build Your Support Team</h2>
-      <p>Assemble a team of professionals who understand autism and can support your family. This might include therapists, educators, medical professionals, and advocates.</p>
-
-      <h2>6. Focus on Your Child's Strengths</h2>
-      <p>Every child has unique abilities and interests. Celebrate these strengths and use them as building blocks for learning and development.</p>
-
-      <h2>7. Learn About Your Rights</h2>
-      <p>Familiarize yourself with special education laws, insurance coverage, and disability rights. Knowledge is power when advocating for your child's needs.</p>
-
-      <h2>8. Take Care of Yourself</h2>
-      <p>Self-care isn't selfish—it's essential. You can't pour from an empty cup. Make time for your own physical and mental health.</p>
-
-      <h2>9. Be Patient with the Process</h2>
-      <p>Progress isn't always linear. Celebrate small victories and be patient with setbacks. Every child develops at their own pace.</p>
-
-      <h2>10. Maintain Hope and Optimism</h2>
-      <p>While the journey may have challenges, there's so much reason for hope. With the right support and resources, individuals with autism can thrive and lead fulfilling lives.</p>
-
-      <h2>Moving Forward</h2>
-      <p>Remember, receiving a diagnosis is just the beginning of your journey. With time, support, and resources, you'll find your way. The Autism Resource Project is here to support you every step of the way.</p>
-    `,
+  if (!post) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600 dark:text-gray-300 mb-4">Article not found</p>
+          <Link to="/blog" className="text-primary hover:underline">Back to Blog</Link>
+        </div>
+      </div>
+    )
   }
 
   const handleShare = (platform) => {
@@ -126,28 +120,31 @@ export default function BlogPost() {
           </div>
 
           {/* Article Content */}
-          <div 
-            className="prose prose-lg max-w-none dark:prose-invert"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          <div className="prose prose-lg max-w-none dark:prose-invert">
+            <ReactMarkdown>{post.body}</ReactMarkdown>
+          </div>
         </article>
 
         {/* Related Articles */}
-        <Card>
-          <CardContent className="p-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Articles</h2>
-            <div className="space-y-4">
-              <Link to="/blog/sensory-processing-autism-guide" className="block hover:bg-gray-50 dark:hover:bg-gray-700 p-4 rounded-lg transition-colors">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Understanding Sensory Processing in Autism</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Learn about sensory processing differences and practical strategies...</p>
-              </Link>
-              <Link to="/blog/aac-devices-communication-alternatives" className="block hover:bg-gray-50 dark:hover:bg-gray-700 p-4 rounded-lg transition-colors">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Building Communication Skills with AAC</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Explore augmentative and alternative communication devices...</p>
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
+        {relatedPosts.length > 0 && (
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Articles</h2>
+              <div className="space-y-4">
+                {relatedPosts.map((relatedPost) => (
+                  <Link 
+                    key={relatedPost.slug}
+                    to={`/blog/${relatedPost.slug}`} 
+                    className="block hover:bg-gray-50 dark:hover:bg-gray-700 p-4 rounded-lg transition-colors"
+                  >
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-1">{relatedPost.title}</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">{relatedPost.excerpt}</p>
+                  </Link>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Newsletter CTA */}
         <div className="mt-8 bg-gradient-to-br from-indigo-600 to-purple-600 dark:from-indigo-700 dark:to-purple-700 rounded-lg p-8 text-white text-center">

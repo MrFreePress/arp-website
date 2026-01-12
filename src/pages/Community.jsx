@@ -4,49 +4,25 @@ import { Select } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { MapPin, Users, Calendar, ExternalLink } from 'lucide-react'
-
-// Sample community data - ARP will provide actual data
-const sampleCommunities = [
-  {
-    id: 1,
-    name: 'Los Angeles Autism Support Group',
-    state: 'California',
-    city: 'Los Angeles',
-    type: 'Support Group',
-    description: 'Monthly meetups for families and caregivers in the LA area.',
-    contact: 'la-support@example.com',
-    website: '#',
-    meetingSchedule: 'First Saturday of each month',
-  },
-  {
-    id: 2,
-    name: 'Bay Area Neurodiversity Network',
-    state: 'California',
-    city: 'San Francisco',
-    type: 'Network',
-    description: 'Professional networking and social events for neurodivergent adults.',
-    contact: 'bayarea@example.com',
-    website: '#',
-    meetingSchedule: 'Bi-weekly virtual meetups',
-  },
-  {
-    id: 3,
-    name: 'San Diego Autism Resource Center',
-    state: 'California',
-    city: 'San Diego',
-    type: 'Resource Center',
-    description: 'Comprehensive resources, workshops, and family events.',
-    contact: 'sandiego@example.com',
-    website: '#',
-    meetingSchedule: 'Open Monday-Friday',
-  },
-]
+import { loadCommunityResources } from '@/lib/contentLoader'
 
 export default function Community() {
+  const [communities, setCommunities] = useState([])
+  const [loading, setLoading] = useState(true)
   const [selectedState, setSelectedState] = useState('all')
   const [selectedCity, setSelectedCity] = useState('all')
   const [selectedType, setSelectedType] = useState('all')
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+
+  useEffect(() => {
+    // Load community resources from CMS
+    async function fetchCommunities() {
+      const data = await loadCommunityResources()
+      setCommunities(data)
+      setLoading(false)
+    }
+    fetchCommunities()
+  }, [])
 
   useEffect(() => {
     // Load the LeadConnector form embed script
@@ -146,12 +122,12 @@ export default function Community() {
   }, [isDialogOpen])
 
   // Extract unique values
-  const states = ['all', ...new Set(sampleCommunities.map(c => c.state))]
-  const cities = ['all', ...new Set(sampleCommunities.map(c => c.city))]
-  const types = ['all', ...new Set(sampleCommunities.map(c => c.type))]
+  const states = ['all', ...new Set(communities.map(c => c.state))]
+  const cities = ['all', ...new Set(communities.map(c => c.city))]
+  const types = ['all', ...new Set(communities.map(c => c.type))]
 
   // Filter communities
-  const filteredCommunities = sampleCommunities.filter(community => {
+  const filteredCommunities = communities.filter(community => {
     const matchesState = selectedState === 'all' || community.state === selectedState
     const matchesCity = selectedCity === 'all' || community.city === selectedCity
     const matchesType = selectedType === 'all' || community.type === selectedType

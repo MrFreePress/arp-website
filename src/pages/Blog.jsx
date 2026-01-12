@@ -5,51 +5,23 @@ import { Select } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search, Calendar, User, Tag, Share2 } from 'lucide-react'
-
-// Sample blog posts with SEO-rich content
-const samplePosts = [
-  {
-    id: 1,
-    title: '10 Essential Tips for Navigating an Autism Diagnosis',
-    slug: 'navigating-autism-diagnosis-tips',
-    author: 'ARP Team',
-    date: '2024-01-20',
-    category: 'Getting Started',
-    tags: ['diagnosis', 'early intervention', 'support'],
-    excerpt: 'Receiving an autism diagnosis can be overwhelming. Here are ten essential tips to help you navigate this journey with confidence and support.',
-    image: '/images/blog/diagnosis-tips.jpg',
-    readTime: '8 min read',
-  },
-  {
-    id: 2,
-    title: 'Understanding Sensory Processing in Autism: A Complete Guide',
-    slug: 'sensory-processing-autism-guide',
-    author: 'Dr. Sarah Johnson',
-    date: '2024-01-18',
-    category: 'Education',
-    tags: ['sensory processing', 'strategies', 'daily living'],
-    excerpt: 'Learn about sensory processing differences in autism and discover practical strategies to create a sensory-friendly environment at home and school.',
-    image: '/images/blog/sensory-guide.jpg',
-    readTime: '12 min read',
-  },
-  {
-    id: 3,
-    title: 'Building Communication Skills: AAC Devices and Alternatives',
-    slug: 'aac-devices-communication-alternatives',
-    author: 'Emily Rodriguez',
-    date: '2024-01-15',
-    category: 'Communication',
-    tags: ['AAC', 'communication', 'technology'],
-    excerpt: 'Explore the world of augmentative and alternative communication (AAC) devices and learn how they can empower non-verbal individuals.',
-    image: '/images/blog/aac-devices.jpg',
-    readTime: '10 min read',
-  },
-]
+import { loadBlogPosts } from '@/lib/contentLoader'
 
 export default function Blog() {
-  const [posts, setPosts] = useState(samplePosts)
+  const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+
+  useEffect(() => {
+    // Load blog posts from CMS
+    async function fetchPosts() {
+      const data = await loadBlogPosts()
+      setPosts(data)
+      setLoading(false)
+    }
+    fetchPosts()
+  }, [])
 
   useEffect(() => {
     // Load the LeadConnector form embed script
@@ -145,9 +117,20 @@ export default function Blog() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPosts.map((post) => (
               <Card key={post.id} className="hover:shadow-lg transition-shadow overflow-hidden">
-                <div className="h-48 bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
-                  <span className="text-gray-400 text-sm">Featured Image</span>
-                </div>
+                {post.image ? (
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src={post.image} 
+                      alt={post.imageAlt || post.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-48 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/20 dark:to-purple-900/20 flex items-center justify-center">
+                    <span className="text-gray-400 dark:text-gray-600 text-sm">Featured Image</span>
+                  </div>
+                )}
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-800">

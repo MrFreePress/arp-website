@@ -5,46 +5,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Select } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Play, Search, Share2, Star } from 'lucide-react'
-
-// Sample podcast episodes data - replace with actual data
-const sampleEpisodes = [
-  {
-    id: 1,
-    title: 'Understanding Autism Spectrum Disorder',
-    guest: 'Dr. Temple Grandin',
-    topic: 'Autism Awareness',
-    date: '2024-01-15',
-    duration: '45:30',
-    description: 'Join us for an insightful conversation with Dr. Temple Grandin about understanding autism from a personal and professional perspective.',
-    audioUrl: '#',
-  },
-  {
-    id: 2,
-    title: 'Navigating Special Education',
-    guest: 'Elizabeth Hamblet',
-    topic: 'Education',
-    date: '2024-01-08',
-    duration: '38:20',
-    description: 'Learn about IEPs, 504 plans, and advocating for your child in the education system.',
-    audioUrl: '#',
-  },
-  {
-    id: 3,
-    title: 'Building Social Skills',
-    guest: 'Elaine Hall',
-    topic: 'Social Development',
-    date: '2024-01-01',
-    duration: '42:15',
-    description: 'Discover practical strategies for helping neurodivergent individuals develop meaningful social connections.',
-    audioUrl: '#',
-  },
-]
+import { loadPodcastEpisodes } from '@/lib/contentLoader'
 
 export default function Podcast() {
-  const [episodes, setEpisodes] = useState(sampleEpisodes)
+  const [episodes, setEpisodes] = useState([])
+  const [loading, setLoading] = useState(true)
   const [selectedTopic, setSelectedTopic] = useState('all')
   const [selectedGuest, setSelectedGuest] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+
+  useEffect(() => {
+    // Load podcast episodes from CMS
+    async function fetchEpisodes() {
+      const data = await loadPodcastEpisodes()
+      setEpisodes(data)
+      setLoading(false)
+    }
+    fetchEpisodes()
+  }, [])
 
   useEffect(() => {
     // Load the LeadConnector form embed script
@@ -190,7 +168,7 @@ export default function Podcast() {
                 <CardContent>
                   <div className="space-y-2">
                     <Button asChild className="w-full">
-                      <Link to={`/podcast/${episode.id}`}>
+                      <Link to={`/podcast/${episode.slug}`}>
                         <Play className="mr-2 h-4 w-4" />
                         Listen Now
                       </Link>

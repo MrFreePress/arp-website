@@ -1,37 +1,41 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowLeft, Share2, Star, Download, ExternalLink } from 'lucide-react'
+import { loadPodcastEpisode } from '@/lib/contentLoader'
 
 export default function PodcastEpisode() {
-  const { id } = useParams()
+  const { slug } = useParams()
+  const [episode, setEpisode] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-  // Sample episode data - replace with actual data fetching
-  const episode = {
-    id: id,
-    title: 'Understanding Autism Spectrum Disorder',
-    guest: 'Dr. Temple Grandin',
-    guestBio: 'Dr. Temple Grandin is a professor of animal science and a prominent autism spokesperson.',
-    guestWebsite: 'https://www.templegrandin.com/',
-    topic: 'Autism Awareness',
-    date: '2024-01-15',
-    duration: '45:30',
-    description: 'Join us for an insightful conversation with Dr. Temple Grandin about understanding autism from a personal and professional perspective.',
-    audioUrl: '#', // Replace with actual audio URL
-    showNotes: `
-      In this episode, we discuss:
-      - Understanding sensory sensitivities
-      - Visual thinking and autism
-      - Career development for autistic individuals
-      - Advocacy and self-determination
-      - The importance of early intervention
-    `,
-    resources: [
-      { title: 'Temple Grandin Official Website', url: 'https://www.templegrandin.com/' },
-      { title: 'Thinking in Pictures Book', url: '#' },
-      { title: 'Autism Society Resources', url: '#' },
-    ],
+  useEffect(() => {
+    async function fetchEpisode() {
+      const data = await loadPodcastEpisode(slug)
+      setEpisode(data)
+      setLoading(false)
+    }
+    fetchEpisode()
+  }, [slug])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <p className="text-gray-600 dark:text-gray-300">Loading episode...</p>
+      </div>
+    )
+  }
+
+  if (!episode) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600 dark:text-gray-300 mb-4">Episode not found</p>
+          <Link to="/podcast" className="text-primary hover:underline">Back to Podcast</Link>
+        </div>
+      </div>
+    )
   }
 
   const handleShare = () => {
@@ -133,33 +137,38 @@ export default function PodcastEpisode() {
         <Card className="mb-6">
           <CardContent className="p-6">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Show Notes</h2>
-            <div className="prose prose-sm text-gray-600 dark:text-gray-300 whitespace-pre-line">
-              {episode.showNotes}
+            <div className="prose prose-sm max-w-none dark:prose-invert text-gray-600 dark:text-gray-300">
+              <div dangerouslySetInnerHTML={{ __html: episode.showNotes }} />
             </div>
           </CardContent>
         </Card>
 
         {/* Resources */}
-        <Card className="mb-6">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Resources Mentioned</h2>
-            <ul className="space-y-2">
-              {episode.resources.map((resource, index) => (
-                <li key={index}>
-                  <a
-                    href={resource.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-primary hover:underline"
-                  >
-                    {resource.title}
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        {episode.resources && episode.resources.length > 0 && (
+          <Card className="mb-6">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Resources Mentioned</h2>
+              <ul className="space-y-2">
+                {episode.resources.map((resource, index) => (
+                  <li key={index}>
+                    <a
+                      href={resource.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-primary hover:underline"
+                    >
+                      {resource.title}
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                    {resource.description && (
+                      <p className="text-sm text-gray-600 dark:text-gray-400 ml-6 mt-1">{resource.description}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        )}
 
         {/* CTA Section */}
         <div className="bg-gradient-to-br from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 rounded-lg p-8 text-white text-center">

@@ -38,10 +38,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/podcast" element={<Podcast />} />
-            <Route path="/podcast/:id" element={<PodcastEpisode />} />
+            <Route path="/podcast/:slug" element={<PodcastEpisode />} />
             <Route path="/community" element={<Community />} />
             <Route path="/library" element={<Library />} />
-            <Route path="/library/resource/:id" element={<ResourceDetail />} />
+            <Route path="/library/:slug" element={<ResourceDetail />} />
             <Route path="/marketplace" element={<Marketplace />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />

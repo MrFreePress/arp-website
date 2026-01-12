@@ -1,74 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search, BookOpen, FileText, Video, Download, ExternalLink } from 'lucide-react'
-
-// Sample library resources - ARP will provide actual content
-const sampleResources = [
-  {
-    id: 1,
-    title: 'Understanding IEPs and 504 Plans',
-    category: 'Education',
-    type: 'PDF Guide',
-    description: 'Comprehensive guide to navigating special education services and advocating for your child.',
-    url: '#',
-    downloadable: true,
-  },
-  {
-    id: 2,
-    title: 'Sensory Processing Strategies',
-    category: 'Daily Living',
-    type: 'Article',
-    description: 'Practical strategies for managing sensory sensitivities at home and in public spaces.',
-    url: '#',
-    downloadable: false,
-  },
-  {
-    id: 3,
-    title: 'Communication Tools for Non-Verbal Individuals',
-    category: 'Communication',
-    type: 'Video',
-    description: 'Introduction to AAC devices and alternative communication methods.',
-    url: '#',
-    downloadable: false,
-  },
-  {
-    id: 4,
-    title: 'Employment Resources for Autistic Adults',
-    category: 'Employment',
-    type: 'Resource List',
-    description: 'Directory of autism-friendly employers and job coaching services.',
-    url: '#',
-    downloadable: true,
-  },
-  {
-    id: 5,
-    title: 'Early Intervention Guide',
-    category: 'Early Childhood',
-    type: 'PDF Guide',
-    description: 'Essential information for parents of newly diagnosed children.',
-    url: '#',
-    downloadable: true,
-  },
-  {
-    id: 6,
-    title: 'Social Skills Development Activities',
-    category: 'Social Skills',
-    type: 'Activity Guide',
-    description: 'Age-appropriate activities to build social connections and understanding.',
-    url: '#',
-    downloadable: true,
-  },
-]
+import { loadLibraryResources } from '@/lib/contentLoader'
 
 export default function Library() {
-  const [resources, setResources] = useState(sampleResources)
+  const [resources, setResources] = useState([])
+  const [loading, setLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedType, setSelectedType] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+
+  useEffect(() => {
+    // Load library resources from CMS
+    async function fetchResources() {
+      const data = await loadLibraryResources()
+      setResources(data)
+      setLoading(false)
+    }
+    fetchResources()
+  }, [])
 
   // Extract unique categories and types
   const categories = ['all', ...new Set(resources.map(r => r.category))]
@@ -192,16 +146,26 @@ export default function Library() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
-                      <Button asChild className="w-full">
-                        <Link to={`/library/resource/${resource.id}`}>
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          View Resource
-                        </Link>
-                      </Button>
-                      {resource.downloadable && (
-                        <Button variant="outline" className="w-full">
-                          <Download className="mr-2 h-4 w-4" />
-                          Download
+                      {resource.downloadable && resource.file ? (
+                        <Button asChild className="w-full">
+                          <a href={resource.file} download>
+                            <Download className="mr-2 h-4 w-4" />
+                            Download
+                          </a>
+                        </Button>
+                      ) : resource.url ? (
+                        <Button asChild className="w-full">
+                          <a href={resource.url} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            View Resource
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button asChild className="w-full">
+                          <Link to={`/library/${resource.slug}`}>
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            View Details
+                          </Link>
                         </Button>
                       )}
                     </div>
