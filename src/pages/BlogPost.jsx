@@ -30,6 +30,20 @@ export default function BlogPost() {
     fetchPost()
   }, [slug])
 
+  useEffect(() => {
+    // Load the LeadConnector form embed script
+    const script = document.createElement('script')
+    script.src = 'https://link.msgsndr.com/js/form_embed.js'
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
+    }
+  }, [])
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
@@ -168,9 +182,25 @@ export default function BlogPost() {
         <div className="mt-8 bg-gradient-to-br from-indigo-600 to-purple-600 dark:from-indigo-700 dark:to-purple-700 rounded-lg p-8 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Want More Articles Like This?</h2>
           <p className="mb-6">Subscribe to our newsletter for weekly insights and resources</p>
-          <Button size="lg" variant="secondary">
-            Subscribe Now
-          </Button>
+          <div className="w-full max-w-2xl mx-auto" style={{ minHeight: '605px' }}>
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/form/ZXoVFsNaaAFBNomYKyc8"
+              style={{ width: '100%', height: '605px', border: 'none', borderRadius: '3px' }}
+              id="inline-ZXoVFsNaaAFBNomYKyc8-blogpost" 
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Subscribe to Our List"
+              data-height="605"
+              data-layout-iframe-id="inline-ZXoVFsNaaAFBNomYKyc8-blogpost"
+              data-form-id="ZXoVFsNaaAFBNomYKyc8"
+              title="Subscribe to Our List"
+            />
+          </div>
         </div>
       </div>
     </div>
