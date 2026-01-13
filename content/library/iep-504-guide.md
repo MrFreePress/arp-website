@@ -6,7 +6,7 @@ type: PDF Guide
 description: Comprehensive guide to navigating special education services and
   advocating for your child in the school system.
 downloadable: true
-file: /uploads/library/files/iep-504-guide.pdf
+file: public/uploads/library/files/iep-504-guide.pdf
 author: ARP Education Team
 publicationDate: 2023-09-01
 lastUpdated: 2024-01-10
