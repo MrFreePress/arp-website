@@ -214,7 +214,7 @@ collections:
       
       # Resource Location
       - {label: "Downloadable", name: "downloadable", widget: "boolean", default: false, hint: "Is this file hosted on our site?"}
-      - {label: "File Upload", name: "file", widget: "file", required: false, media_folder: "public/uploads/library/files", hint: "Upload PDF, DOC, or other file (if downloadable)"}
+      - {label: "File Upload", name: "file", widget: "file", required: false, media_folder: "/public/uploads/library/files", public_folder: "/uploads/library/files", hint: "Upload PDF, DOC, or other file (if downloadable)"}
       - {label: "External URL", name: "url", widget: "string", required: false, hint: "Link to external resource (if not downloadable)"}
       
       # Additional Information

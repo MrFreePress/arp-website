@@ -215,6 +215,8 @@ export async function loadLibraryResources() {
         ...data,
         slug: data.slug || slug,
         id: data.slug || slug,
+        file: normalizeImagePath(data.file),
+        thumbnail: normalizeImagePath(data.thumbnail),
       })
     }
 
@@ -244,6 +246,8 @@ export async function loadLibraryResource(slug) {
           body,
           slug: data.slug || fileSlug,
           id: data.slug || fileSlug,
+          file: normalizeImagePath(data.file),
+          thumbnail: normalizeImagePath(data.thumbnail),
         }
       }
     }
