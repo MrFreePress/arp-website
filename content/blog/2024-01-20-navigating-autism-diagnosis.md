@@ -2,8 +2,8 @@
 title: 10 Essential Tips for Navigating Autism Diagnosis
 slug: navigating-autism-diagnosis-tips
 author: ARP Team
-date: 2024-01-20
-category: Getting Started
+date: 2026-01-12
+category: Communication
 tags:
   - diagnosis
   - early intervention
@@ -12,7 +12,7 @@ tags:
   - getting started
 excerpt: Receiving an autism diagnosis can be overwhelming. Here are ten
   essential tips to help you navigate this journey with confidence and support.
-image: /uploads/blog/images/gemini_generated_image_vhjhtfvhjhtfvhjh.png
+image: /uploads/blog/images/island-isntland.jpg
 imageAlt: Parent holding child's hand, symbolizing support and guidance through
   the autism diagnosis journey
 readTime: 8 min read
