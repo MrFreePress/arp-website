@@ -181,6 +181,18 @@ export default function PodcastEpisode() {
           </Card>
         )}
 
+        {/* Transcript */}
+        {episode.hasTranscript && episode.transcript && (
+          <Card className="mb-6">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Episode Transcript</h2>
+              <div className="prose prose-sm max-w-none dark:prose-invert">
+                <ReactMarkdown>{episode.transcript}</ReactMarkdown>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* CTA Section */}
         <div className="bg-gradient-to-br from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 rounded-lg p-8 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Enjoyed this episode?</h2>
