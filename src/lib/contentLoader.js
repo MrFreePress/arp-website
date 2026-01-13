@@ -6,6 +6,30 @@ import matter from 'gray-matter'
  */
 
 /**
+ * Format duration - handles gray-matter parsing time as minutes
+ * Converts number back to MM:SS format or preserves string format
+ * @param {string|number} duration - Duration value
+ * @returns {string} Formatted duration string
+ */
+function formatDuration(duration) {
+  if (!duration) return null
+  // If it's already a properly formatted string, return it
+  if (typeof duration === 'string' && duration.includes(':')) {
+    return duration
+  }
+  // If gray-matter converted it to a number (minutes), convert back
+  if (typeof duration === 'number') {
+    const hours = Math.floor(duration / 60)
+    const minutes = duration % 60
+    if (hours > 0) {
+      return `${hours}:${String(minutes).padStart(2, '0')}:00`
+    }
+    return `${Math.floor(duration)}:${String(Math.round((duration % 1) * 60)).padStart(2, '0')}`
+  }
+  return String(duration)
+}
+
+/**
  * Normalize image path - removes 'public/' prefix if present
  * CMS stores files in public/ but URLs should not include it
  * @param {string} imagePath - Image path from CMS
@@ -41,6 +65,7 @@ export async function loadPodcastEpisodes() {
         id: data.episode || episodes.length + 1,
         guestPhoto: normalizeImagePath(data.guestPhoto),
         audioUrl: normalizeImagePath(data.audioUrl),
+        duration: formatDuration(data.duration),
       })
     }
 
@@ -72,6 +97,7 @@ export async function loadPodcastEpisode(slug) {
           id: data.episode,
           guestPhoto: normalizeImagePath(data.guestPhoto),
           audioUrl: normalizeImagePath(data.audioUrl),
+          duration: formatDuration(data.duration),
         }
       }
     }
