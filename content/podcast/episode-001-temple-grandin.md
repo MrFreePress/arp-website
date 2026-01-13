@@ -72,7 +72,7 @@ resources:
   - title: Visual Thinking Strategies
     url: https://www.templegrandin.com/visual-thinking/
     description: Articles and resources on visual thinking
-featured: true
+featured: false
 season: 1
 hasTranscript: false
 ---
