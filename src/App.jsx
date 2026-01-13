@@ -16,6 +16,7 @@ import BlogPost from './pages/BlogPost'
 import Contact from './pages/Contact'
 import Donate from './pages/Donate'
 import AccessibilityTest from './pages/AccessibilityTest'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -48,6 +49,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="/accessibility-test" element={<AccessibilityTest />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             {/* Add more routes as needed */}
           </Routes>
         </main>
