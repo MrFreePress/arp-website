@@ -1,6 +1,6 @@
 ---
-name: Los Angeles Autism Support Group
-slug: la-autism-support-group
+name: Autism Society of Los Angeles
+slug: autism-society-of-los-angeles
 type: Support Group
 description: Monthly meetups for families and caregivers in the LA area. Share
   experiences, resources, and support in a welcoming environment.
