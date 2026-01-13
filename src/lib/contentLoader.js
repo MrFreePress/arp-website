@@ -6,10 +6,10 @@ import matter from 'gray-matter'
  */
 
 /**
- * Format duration - handles gray-matter parsing time as minutes
- * Converts number back to MM:SS format or preserves string format
+ * Format duration - handles gray-matter parsing time as seconds
+ * gray-matter converts "MM:SS" to total seconds (e.g., "20:05" → 1205)
  * @param {string|number} duration - Duration value
- * @returns {string} Formatted duration string
+ * @returns {string} Formatted duration string (MM:SS or HH:MM:SS)
  */
 function formatDuration(duration) {
   if (!duration) return null
@@ -17,14 +17,17 @@ function formatDuration(duration) {
   if (typeof duration === 'string' && duration.includes(':')) {
     return duration
   }
-  // If gray-matter converted it to a number (minutes), convert back
+  // If gray-matter converted it to a number (total seconds), convert back
   if (typeof duration === 'number') {
-    const hours = Math.floor(duration / 60)
-    const minutes = duration % 60
+    const totalSeconds = Math.round(duration)
+    const hours = Math.floor(totalSeconds / 3600)
+    const minutes = Math.floor((totalSeconds % 3600) / 60)
+    const seconds = totalSeconds % 60
+    
     if (hours > 0) {
-      return `${hours}:${String(minutes).padStart(2, '0')}:00`
+      return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
     }
-    return `${Math.floor(duration)}:${String(Math.round((duration % 1) * 60)).padStart(2, '0')}`
+    return `${minutes}:${String(seconds).padStart(2, '0')}`
   }
   return String(duration)
 }
