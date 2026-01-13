@@ -14,7 +14,7 @@ date: 2024-01-15
 duration: 45:30
 description: Join us for an insightful conversation with Dr. Temple Grandin
   about understanding autism from a personal and professional perspective.
-audioUrl: /public/uploads/podcast/audio/slide-1.mp3
+audioUrl: https://mcdn.podbean.com/mf/web/dyek79hwkise6vf8/Bill_Walters5yj2r.mp3
 showNotes: >
   In this groundbreaking first episode, we sit down with Dr. Temple Grandin to
   discuss her unique perspective on autism, visual thinking, and career
