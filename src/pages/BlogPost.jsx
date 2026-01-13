@@ -110,14 +110,16 @@ export default function BlogPost() {
               <span>{post.readTime}</span>
             </div>
 
-            <div className="flex flex-wrap gap-2 mb-6">
-              {post.tags.map(tag => (
-                <span key={tag} className="inline-flex items-center text-sm text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
-                  <Tag className="h-3 w-3 mr-1" />
-                  {tag}
-                </span>
-              ))}
-            </div>
+            {post.tags?.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-6">
+                {post.tags.map(tag => (
+                  <span key={tag} className="inline-flex items-center text-sm text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+                    <Tag className="h-3 w-3 mr-1" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
 
             {/* Share Buttons */}
             <div className="flex items-center gap-3 pt-4 border-t dark:border-gray-700">
