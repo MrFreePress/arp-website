@@ -12,6 +12,102 @@
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
+  <!-- Auto-generate slug from title -->
+  <script>
+    // Function to convert title to slug
+    function generateSlug(title) {
+      return title
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '') // Remove special characters
+        .replace(/\s+/g, '-')     // Replace spaces with hyphens
+        .replace(/-+/g, '-')      // Replace multiple hyphens with single
+        .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+    }
+    
+    // Map of title field names to slug field names for each collection
+    const titleToSlugMap = {
+      'title': 'slug',  // Podcast, Blog, Library
+      'name': 'slug'    // Community
+    };
+    
+    // Track if slug has been manually edited
+    let slugManuallyEdited = {};
+    
+    // Setup auto-slug generation
+    function setupAutoSlug() {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === 1) {
+              // Find title/name input fields
+              const titleInputs = node.querySelectorAll('input[id*="title"], input[id*="name"]');
+              titleInputs.forEach(setupTitleListener);
+              
+              // Find slug input fields and track manual edits
+              const slugInputs = node.querySelectorAll('input[id*="slug"]');
+              slugInputs.forEach(setupSlugListener);
+            }
+          });
+        });
+      });
+      
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+    
+    function setupTitleListener(titleInput) {
+      if (titleInput.dataset.autoSlugSetup) return;
+      titleInput.dataset.autoSlugSetup = 'true';
+      
+      titleInput.addEventListener('input', (e) => {
+        const titleValue = e.target.value;
+        const formContainer = e.target.closest('div[class*="ControlContainer"]')?.parentElement?.parentElement;
+        
+        if (formContainer) {
+          // Find the slug input in the same form
+          const slugInput = formContainer.querySelector('input[id*="slug"]');
+          if (slugInput && !slugManuallyEdited[slugInput.id]) {
+            const newSlug = generateSlug(titleValue);
+            
+            // Set the value and trigger React's change detection
+            const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+            nativeInputValueSetter.call(slugInput, newSlug);
+            
+            const inputEvent = new Event('input', { bubbles: true });
+            slugInput.dispatchEvent(inputEvent);
+          }
+        }
+      });
+    }
+    
+    function setupSlugListener(slugInput) {
+      if (slugInput.dataset.slugListenerSetup) return;
+      slugInput.dataset.slugListenerSetup = 'true';
+      
+      // Track when user manually types in slug field
+      slugInput.addEventListener('keydown', (e) => {
+        // If user types in slug field, mark it as manually edited
+        if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete') {
+          slugManuallyEdited[slugInput.id] = true;
+        }
+      });
+      
+      // Reset manual edit flag when entering a new entry
+      slugInput.addEventListener('focus', () => {
+        if (slugInput.value === '') {
+          slugManuallyEdited[slugInput.id] = false;
+        }
+      });
+    }
+    
+    // Start observing once DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupAutoSlug);
+    } else {
+      setupAutoSlug();
+    }
+  </script>
+  
   <!-- Netlify Identity Redirect Script -->
   <script>
     if (window.netlifyIdentity) {
