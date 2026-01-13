@@ -5,7 +5,7 @@ slug: here-we-are
 guest: Bob Plinkett
 guestBio: Here is Bob...Good guy!
 guestWebsite: https://BobPlinkett.com
-guestPhoto: public/uploads/podcast/guests/20251101_153840.jpg
+guestPhoto: /uploads/podcast/guests/20251101_153840.jpg
 topic: Daily Living
 date: 2026-01-12
 duration: 55:43

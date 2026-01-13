@@ -111,18 +111,34 @@ export default function PodcastEpisode() {
         <Card className="mb-6">
           <CardContent className="p-6">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">About the Guest</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">{episode.guestBio}</p>
-            {episode.guestWebsite && (
-              <a
-                href={episode.guestWebsite}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-primary hover:underline"
-              >
-                Visit Website
-                <ExternalLink className="ml-2 h-4 w-4" />
-              </a>
-            )}
+            <div className="flex flex-col sm:flex-row gap-6">
+              {episode.guestPhoto && (
+                <div className="flex-shrink-0">
+                  <img 
+                    src={episode.guestPhoto} 
+                    alt={episode.guest}
+                    className="w-32 h-32 sm:w-40 sm:h-40 rounded-lg object-cover shadow-md"
+                    onError={(e) => {
+                      e.target.style.display = 'none'
+                    }}
+                  />
+                </div>
+              )}
+              <div className="flex-1">
+                <p className="text-gray-600 dark:text-gray-300 mb-4">{episode.guestBio}</p>
+                {episode.guestWebsite && (
+                  <a
+                    href={episode.guestWebsite}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-primary hover:underline"
+                  >
+                    Visit Website
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                )}
+              </div>
+            </div>
           </CardContent>
         </Card>
 
