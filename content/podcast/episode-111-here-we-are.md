@@ -12,7 +12,7 @@ duration: 55:43
 description: Short description is here.
 audioUrl: https://www.podbean.com/ep/pb-g4cmz-1a0e7da
 showNotes: These are the show notes.
-featured: true
+featured: false
 season: 4
 hasTranscript: false
 ---
