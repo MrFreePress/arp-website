@@ -71,10 +71,6 @@ export default function Podcast() {
               Explore the joys, challenges, and triumphs of being part of the neurodiverse community. Every story shared is an invitation to understand and connect.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">
-                <Play className="mr-2 h-5 w-5" />
-                Latest Episode
-              </Button>
               <Button variant="outline" size="lg" asChild>
                 <a href="https://open.spotify.com/show/0t8eITPUSCSZxRa2C1eyRE" target="_blank" rel="noopener noreferrer">
                   Subscribe on Spotify
