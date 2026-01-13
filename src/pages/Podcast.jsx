@@ -43,8 +43,11 @@ export default function Podcast() {
   const topics = ['all', ...new Set(episodes.map(ep => ep.topic))]
   const guests = ['all', ...new Set(episodes.map(ep => ep.guest))]
 
-  // Filter episodes
+  // Filter episodes - only show featured episodes
   const filteredEpisodes = episodes.filter(episode => {
+    // Only show episodes marked as featured
+    if (!episode.featured) return false
+    
     const matchesTopic = selectedTopic === 'all' || episode.topic === selectedTopic
     const matchesGuest = selectedGuest === 'all' || episode.guest === selectedGuest
     const matchesSearch = searchQuery === '' || 
