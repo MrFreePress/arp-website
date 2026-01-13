@@ -41,8 +41,11 @@ export default function Blog() {
   // Extract unique categories
   const categories = ['all', ...new Set(posts.map(p => p.category))]
 
-  // Filter posts
+  // Filter posts - only show featured posts
   const filteredPosts = posts.filter(post => {
+    // Only show posts marked as featured
+    if (!post.featured) return false
+    
     const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory
     const matchesSearch = searchQuery === '' || 
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
