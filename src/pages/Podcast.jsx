@@ -72,14 +72,20 @@ export default function Podcast() {
                 <Play className="mr-2 h-5 w-5" />
                 Latest Episode
               </Button>
-              <Button variant="outline" size="lg">
-                Subscribe on Spotify
+              <Button variant="outline" size="lg" asChild>
+                <a href="https://open.spotify.com/show/0t8eITPUSCSZxRa2C1eyRE" target="_blank" rel="noopener noreferrer">
+                  Subscribe on Spotify
+                </a>
               </Button>
-              <Button variant="outline" size="lg">
-                Subscribe on Apple Podcasts
+              <Button variant="outline" size="lg" asChild>
+                <a href="https://podcasts.apple.com/us/podcast/autism-resource-podcast/id1566225919" target="_blank" rel="noopener noreferrer">
+                  Subscribe on Apple Podcasts
+                </a>
               </Button>
-              <Button variant="outline" size="lg">
-                Subscribe on Amazon
+              <Button variant="outline" size="lg" asChild>
+                <a href="https://music.amazon.com/podcasts/df5d629a-2d51-466e-a236-dc1504627b18/autism-resource-podcast" target="_blank" rel="noopener noreferrer">
+                  Subscribe on Amazon
+                </a>
               </Button>
             </div>
           </div>
