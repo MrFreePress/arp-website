@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ShoppingBag, ExternalLink, Heart } from 'lucide-react'
@@ -125,8 +126,8 @@ export default function Marketplace() {
           <p className="text-xl mb-8 text-pink-100">
             Our team is here to help you find the right resources for your needs
           </p>
-          <Button size="lg" variant="secondary">
-            Contact Us
+          <Button asChild size="lg" variant="secondary">
+            <Link to="/contact">Contact Us</Link>
           </Button>
         </div>
       </section>
