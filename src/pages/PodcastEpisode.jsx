@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { ArrowLeft, Share2, Star, Download, ExternalLink } from 'lucide-react'
+import { ArrowLeft, Share2, ExternalLink } from 'lucide-react'
 import { loadPodcastEpisode } from '@/lib/contentLoader'
 import ReactMarkdown from 'react-markdown'
 
@@ -95,14 +95,6 @@ export default function PodcastEpisode() {
             <Button onClick={handleShare}>
               <Share2 className="mr-2 h-4 w-4" />
               Share Episode
-            </Button>
-            <Button variant="outline">
-              <Star className="mr-2 h-4 w-4" />
-              Save for Later
-            </Button>
-            <Button variant="outline">
-              <Download className="mr-2 h-4 w-4" />
-              Download
             </Button>
           </div>
         </div>
