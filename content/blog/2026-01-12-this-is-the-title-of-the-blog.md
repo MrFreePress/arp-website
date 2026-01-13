@@ -13,7 +13,7 @@ excerpt: |-
 image: /uploads/blog/images/2025-pat-green-dereks-den-mother.jpg
 imageAlt: Pat's Birthday Pic
 readTime: 3 min read
-featured: false
+featured: true
 allowComments: true
 ---
 Here is the content...
