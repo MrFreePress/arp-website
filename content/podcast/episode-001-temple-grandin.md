@@ -8,7 +8,7 @@ guestBio: Derek Crager is a professor of animal science at Colorado State
   individuals on the autism spectrum to publicly share insights from her
   personal experience.
 guestWebsite: https://www.practicalai.app/
-guestPhoto: ""
+guestPhoto: /uploads/podcast/guests/derek.jpg
 topic: Autism Awareness
 date: 2024-01-15
 duration: 45:30
