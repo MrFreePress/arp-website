@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowLeft, Share2, Star, Download, ExternalLink } from 'lucide-react'
 import { loadPodcastEpisode } from '@/lib/contentLoader'
+import ReactMarkdown from 'react-markdown'
 
 export default function PodcastEpisode() {
   const { slug } = useParams()
@@ -134,14 +135,16 @@ export default function PodcastEpisode() {
         </Card>
 
         {/* Show Notes */}
-        <Card className="mb-6">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Show Notes</h2>
-            <div className="prose prose-sm max-w-none dark:prose-invert text-gray-600 dark:text-gray-300">
-              <div dangerouslySetInnerHTML={{ __html: episode.showNotes }} />
-            </div>
-          </CardContent>
-        </Card>
+        {episode.showNotes && (
+          <Card className="mb-6">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Show Notes</h2>
+              <div className="prose prose-sm max-w-none dark:prose-invert">
+                <ReactMarkdown>{episode.showNotes}</ReactMarkdown>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Resources */}
         {episode.resources && episode.resources.length > 0 && (

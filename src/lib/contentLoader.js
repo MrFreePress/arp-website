@@ -39,6 +39,8 @@ export async function loadPodcastEpisodes() {
         ...data,
         slug: data.slug || slug,
         id: data.episode || episodes.length + 1,
+        guestPhoto: normalizeImagePath(data.guestPhoto),
+        audioUrl: normalizeImagePath(data.audioUrl),
       })
     }
 
@@ -68,6 +70,8 @@ export async function loadPodcastEpisode(slug) {
           body,
           slug: data.slug || fileSlug,
           id: data.episode,
+          guestPhoto: normalizeImagePath(data.guestPhoto),
+          audioUrl: normalizeImagePath(data.audioUrl),
         }
       }
     }
