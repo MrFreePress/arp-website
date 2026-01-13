@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin, Instagram, Facebook } from 'lucide-react'
 
 export default function Contact() {
   useEffect(() => {
@@ -101,6 +101,29 @@ export default function Contact() {
                     <div>
                       <p className="font-medium text-gray-900 dark:text-white">Location</p>
                       <p className="text-gray-600 dark:text-gray-300">Serving communities nationwide</p>
+                    </div>
+                  </div>
+                  <div className="pt-4 border-t dark:border-gray-700">
+                    <p className="font-medium text-gray-900 dark:text-white mb-3">Follow Us</p>
+                    <div className="flex gap-4">
+                      <a 
+                        href="https://www.instagram.com/TheAutismResourceProject" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
+                      >
+                        <Instagram className="h-6 w-6" />
+                        <span className="text-sm">Instagram</span>
+                      </a>
+                      <a 
+                        href="https://www.facebook.com/autismresourcepodcast" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
+                      >
+                        <Facebook className="h-6 w-6" />
+                        <span className="text-sm">Facebook</span>
+                      </a>
                     </div>
                   </div>
                 </CardContent>
