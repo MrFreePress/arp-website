@@ -164,7 +164,10 @@ export default function Podcast() {
                     <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                       {episode.topic}
                     </span>
-                    <span className="text-sm text-gray-500">{episode.duration}</span>
+                    <div className="text-right text-sm text-gray-500">
+                      <div>{episode.date ? new Date(episode.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ''}</div>
+                      <div>{episode.duration}</div>
+                    </div>
                   </div>
                   <CardTitle className="text-xl line-clamp-2">{episode.title}</CardTitle>
                   <CardDescription>
