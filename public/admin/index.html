@@ -25,6 +25,30 @@
         max-width: 400px;
       }
     }
+    /* Hide the Decap CMS logo at the bottom of the login page */
+    [class*="AppHeader"] a[href*="decap"],
+    [class*="AppHeader"] a[href*="netlify"],
+    a[href="https://decapcms.org"] {
+      display: none !important;
+    }
+    /* Style the custom info text below login button */
+    .cms-login-info {
+      max-width: 400px;
+      margin: 1.5rem auto 0;
+      padding: 0 1rem;
+      text-align: center;
+      color: #767676;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .cms-login-info a {
+      color: #3182ce;
+      text-decoration: none;
+    }
+    .cms-login-info a:hover {
+      text-decoration: underline;
+    }
   </style>
   <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -129,6 +153,48 @@
     }
   </script>
   
+  <!-- Customize Decap CMS login page -->
+  <script>
+    (function() {
+      const observer = new MutationObserver(function(mutations) {
+        // Change "Login" button text to "CMS Login"
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(function(btn) {
+          if (btn.textContent.trim() === 'Login') {
+            btn.textContent = 'CMS Login';
+          }
+        });
+
+        // Add info text below the login button if not already added
+        if (!document.querySelector('.cms-login-info')) {
+          const loginBtn = Array.from(document.querySelectorAll('button')).find(
+            function(btn) { return btn.textContent.trim() === 'CMS Login'; }
+          );
+          if (loginBtn) {
+            const container = loginBtn.closest('div') || loginBtn.parentElement;
+            if (container) {
+              const info = document.createElement('div');
+              info.className = 'cms-login-info';
+              info.innerHTML = 'This is the content management system for The Autism Resource Project. ' +
+                'Access is restricted to authorized agents only. ' +
+                'Visit <a href="https://www.practicalai.app">practicalai.app</a> to learn more.';
+              container.parentElement.insertBefore(info, container.nextSibling);
+            }
+          }
+        }
+
+        // Hide Decap logo/branding links
+        document.querySelectorAll('a').forEach(function(link) {
+          if (link.href && (link.href.includes('decapcms.org') || link.href.includes('netlify'))) {
+            link.style.display = 'none';
+          }
+        });
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+    })();
+  </script>
+
   <!-- Netlify Identity Redirect Script -->
   <script>
     if (window.netlifyIdentity) {
