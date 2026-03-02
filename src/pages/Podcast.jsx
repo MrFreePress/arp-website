@@ -58,6 +58,21 @@ export default function Podcast() {
     return matchesTopic && matchesGuest && matchesSearch
   })
 
+  const handleShare = (episode) => {
+    const url = `${window.location.origin}/podcast/${episode.slug}`
+    if (navigator.share) {
+      navigator.share({
+        title: episode.title,
+        text: episode.description,
+        url: url,
+      })
+    } else {
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Episode link copied to clipboard!')
+      })
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
@@ -181,7 +196,7 @@ export default function Podcast() {
                         Listen Now
                       </Link>
                     </Button>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" onClick={() => handleShare(episode)}>
                       <Share2 className="mr-2 h-4 w-4" />
                       Share
                     </Button>

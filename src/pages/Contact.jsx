@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Mail, Phone, MapPin, Instagram, Facebook } from 'lucide-react'
+import { Mail, MapPin, Instagram, Facebook } from 'lucide-react'
 
 export default function Contact() {
   useEffect(() => {
@@ -87,15 +87,7 @@ export default function Contact() {
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <Phone className="h-5 w-5 text-primary mt-1" />
-                    <div>
-                      <p className="font-medium text-gray-900 dark:text-white">Phone</p>
-                      <a href="tel:+8184519485" className="text-primary hover:underline">
-                        (818) 451-9485
-                      </a>
-                    </div>
-                  </div>
+
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary mt-1" />
                     <div>

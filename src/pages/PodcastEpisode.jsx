@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { ArrowLeft, Share2, ExternalLink } from 'lucide-react'
+import { ArrowLeft, Share2, ExternalLink, Star } from 'lucide-react'
 import { loadPodcastEpisode } from '@/lib/contentLoader'
 import ReactMarkdown from 'react-markdown'
 
@@ -19,6 +19,20 @@ export default function PodcastEpisode() {
     }
     fetchEpisode()
   }, [slug])
+
+  useEffect(() => {
+    // Load the LeadConnector form embed script
+    const script = document.createElement('script')
+    script.src = 'https://link.msgsndr.com/js/form_embed.js'
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
+    }
+  }, [])
 
   if (loading) {
     return (
@@ -197,13 +211,34 @@ export default function PodcastEpisode() {
         <div className="bg-gradient-to-br from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 rounded-lg p-8 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Enjoyed this episode?</h2>
           <p className="mb-6">Help us reach more people by subscribing, rating, and reviewing our podcast!</p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button variant="secondary" size="lg">
-              Subscribe to Newsletter
+          <div className="flex justify-center mb-8">
+            <Button variant="outline" size="lg" className="bg-transparent border-white text-white hover:bg-white hover:text-primary" asChild>
+              <a href="https://podcasts.apple.com/us/podcast/autism-resource-podcast/id1566225919" target="_blank" rel="noopener noreferrer">
+                <Star className="mr-2 h-4 w-4" />
+                Rate & Review
+              </a>
             </Button>
-            <Button variant="outline" size="lg" className="bg-transparent border-white text-white hover:bg-white hover:text-primary">
-              Rate & Review
-            </Button>
+          </div>
+          <h3 className="text-xl font-bold mb-4">Subscribe to Our Newsletter</h3>
+          <p className="mb-6">Get notified about new episodes and exclusive content</p>
+          <div className="w-full max-w-2xl mx-auto" style={{ minHeight: '605px' }}>
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/form/ZXoVFsNaaAFBNomYKyc8"
+              style={{ width: '100%', height: '605px', border: 'none', borderRadius: '3px' }}
+              id="inline-ZXoVFsNaaAFBNomYKyc8-podcast-episode"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Subscribe to Our List"
+              data-height="605"
+              data-layout-iframe-id="inline-ZXoVFsNaaAFBNomYKyc8-podcast-episode"
+              data-form-id="ZXoVFsNaaAFBNomYKyc8"
+              title="Subscribe to Our List"
+            />
           </div>
         </div>
       </div>
