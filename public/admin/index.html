@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>ARP Content Manager</title>
+  <!-- Responsive logo styling for Decap CMS login page -->
+  <style>
+    /* Constrain the custom logo to scale responsively */
+    img[src*="arp-logo"] {
+      max-width: 280px;
+      width: 80vw;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    @media (min-width: 480px) {
+      img[src*="arp-logo"] {
+        max-width: 350px;
+      }
+    }
+    @media (min-width: 768px) {
+      img[src*="arp-logo"] {
+        max-width: 400px;
+      }
+    }
+  </style>
   <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
