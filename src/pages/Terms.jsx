@@ -97,7 +97,6 @@ export default function Terms() {
               <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 mb-6">
                 <p className="text-gray-700 dark:text-gray-200 font-medium">Autism Resource Project</p>
                 <p className="text-gray-600 dark:text-gray-300">Email: info@autismresourceproject.org</p>
-                <p className="text-gray-600 dark:text-gray-300">Phone: (818) 451-9485</p>
               </div>
             </div>
           </div>
