@@ -37,7 +37,7 @@ export default function PrivacyPolicy() {
 
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">How we utilize your information</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                We may use the information we gather from you when you register, make a purchase, subscribe to our newsletter, respond to a survey or marketing communication, explore our website, or utilize specific site features. This may include processing transactions swiftly, sending periodic emails regarding your orders or other products and services, and following up with you after correspondence via live chat, email, or phone inquiries.
+                We may use the information we gather from you when you register, make a purchase, subscribe to our newsletter, respond to a survey or marketing communication, explore our website, or utilize specific site features. This may include processing transactions swiftly, sending periodic emails regarding your orders or other products and services, and following up with you after correspondence via live chat or email.
               </p>
 
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">How we protect your information</h2>
