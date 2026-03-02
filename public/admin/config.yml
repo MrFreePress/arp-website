@@ -29,7 +29,7 @@ auth:
 logo_url: /arp-logo.jpg
 
 # Add site links in Decap CMS (optional)
-site_url: https://arp-website1.netlify.app
+site_url: https://autismresourceproject.org
 
 # Enable editorial workflow (Draft → In Review → Ready)
 publish_mode: editorial_workflow
